@@ -1,0 +1,38 @@
+{
+  "name": "health-tracker",
+  "version": "1.0.0",
+  "description": "An app to track a persons' caloric intake.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnlaine1/udacity-fend-health-tracker.git"
+  },
+  "author": "John Laine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnlaine1/udacity-fend-health-tracker/issues"
+  },
+  "homepage": "https://github.com/johnlaine1/udacity-fend-health-tracker#readme",
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "browser-sync": "^2.13.0",
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-imagemin": "^3.0.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-useref": "^3.1.0",
+    "lazypipe": "^1.0.1",
+    "run-sequence": "^1.2.1"
+  }  
+
+  
+}
