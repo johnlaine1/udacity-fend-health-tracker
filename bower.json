@@ -1,0 +1,23 @@
+{
+  "name": "health-tracker",
+  "description": "An app to track a persons' caloric intake.",
+  "main": "index.html",
+  "authors": [
+    "John Laine"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/johnlaine1/udacity-fend-health-tracker",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbonefire": "^0.5.1",
+    "bootstrap": "^3.3.6",
+    "jquery": "^3.0.0"
+  }
+}
