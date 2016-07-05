@@ -1,0 +1,18 @@
+#title {
+    text-align: center;
+}
+#search-list {
+    max-height: 70vh;
+}
+
+#search-list li {
+    list-style: none;
+}
+
+#search-phrase {
+    color: black;
+}
+
+.panel-heading {
+    text-align: center;
+}
