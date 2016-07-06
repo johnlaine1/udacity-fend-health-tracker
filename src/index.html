@@ -41,9 +41,10 @@
                 <div class="col-sm-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4>My Dashboard</h4>
+                            <h4>Food Diary</h4>
                         </div>
-                        <div class="panel-body" id="user-dashboard">
+                        <div class="panel-body" id="log">
+                            <ul id="log-list"></ul>
                             User consumption info goes here...
                         </div>
                     </div>                
@@ -64,14 +65,16 @@
             <%= model.brand_name %>
             <button id="add-food-item">Add item to food log</button>
         </script>
-        <script type="text/template" id="dashboard-tpl">
-            This is the user dashboard template
+        <script type="text/template" id="log-tpl">
+            This is the food log template
         </script>
         <script type="text/template" id="log-item-list-item-tpl">
-            This is a log item list item template
+            This is a log item list item template<br>
+            Item Name: <%= model.item_name %><br>
+            Item ID: <%= model.item_id %>
         </script>
         <script type="text/template" id="log-item-tpl">
-            This is a log item template
+            This is a log item template<br>
         </script>
         <!-- build:js js/app.min.js -->
         <script src="lib/jquery/dist/jquery.min.js"></script>
@@ -87,8 +90,9 @@
         <script src="scripts/views/app.view.js"></script>
         <script src="scripts/views/foodItem.view.js"></script>
         <script src="scripts/views/foodItemListItem.view.js"></script>
-        <script src="scripts/views/dashboard.view.js"></script>
+        <script src="scripts/views/foodLog.view.js"></script>
         <script src="scripts/views/logItem.view.js"></script>
+        <script src="scripts/views/logItemListItem.view.js"></script>
         <script src="scripts/app.js"></script>
         <!-- endbuild -->
     </body>

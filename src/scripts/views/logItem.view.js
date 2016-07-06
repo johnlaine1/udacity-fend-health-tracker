@@ -1,4 +1,4 @@
-/* global jQuery Backbone */
+/* global jQuery Backbone _ */
 var app = app || {};
 
 (function($) {
@@ -8,8 +8,8 @@ var app = app || {};
        
        el: '',
        
-       template: _.template($('#log-item-tpl')),
+       template: _.template($('#log-item-tpl').html()),
        
-       
+       events: {},
     });
 })(jQuery);

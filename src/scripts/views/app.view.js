@@ -18,7 +18,8 @@ var app = app || {};
             // Cache some variables for later use.
             this.$searchPhrase = this.$('#search-phrase');
             this.$searchList = this.$('#search-list');
-           
+            
+            
             // Set up the listeners
            
        },

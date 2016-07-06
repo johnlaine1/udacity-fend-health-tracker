@@ -15,7 +15,8 @@ var app = app || {};
        initialize: function() {},
        
        render: function() {
-           this.$el.html(this.template({}));
+           console.log(this.model);
+           this.$el.html(this.template({model: this.model}));
            return this;
        }
     });
