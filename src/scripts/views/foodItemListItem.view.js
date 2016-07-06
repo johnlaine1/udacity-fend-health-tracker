@@ -8,7 +8,7 @@ var app = app || {};
         
         tagName: 'li',
         
-        template: _.template($('#food-item-list-item').html()),
+        template: _.template($('#food-item-list-item-tpl').html()),
         
         events: {
             'click': 'showItemData'    

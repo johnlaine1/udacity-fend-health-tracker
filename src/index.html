@@ -53,21 +53,26 @@
         </section>
             
         <!-- Templates -->
-        <script type="text/template" id="food-item-list-item">
+        <script type="text/template" id="food-item-list-item-tpl">
             <a href="#" class="list-group-item">
             <%= model.brand_name %><br>
             <%= model.item_name %><br>
             <%= model.item_description %><br>
             </a>
         </script>
-        <script type="text/template" id="food-item">
+        <script type="text/template" id="food-item-tpl">
             <%= model.brand_name %>
             <button id="add-food-item">Add item to food log</button>
         </script>
-        <script type="text/template" id="user-dashboard-template">
+        <script type="text/template" id="dashboard-tpl">
             This is the user dashboard template
         </script>
-        
+        <script type="text/template" id="log-item-list-item-tpl">
+            This is a log item list item template
+        </script>
+        <script type="text/template" id="log-item-tpl">
+            This is a log item template
+        </script>
         <!-- build:js js/app.min.js -->
         <script src="lib/jquery/dist/jquery.min.js"></script>
         <script src="lib/underscore/underscore-min.js"></script>

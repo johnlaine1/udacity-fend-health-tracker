@@ -8,9 +8,11 @@ var app = app || {};
        
        el: '#food-item-display',
        
-       template: _.template($('#food-item').html()),
+       template: _.template($('#food-item-tpl').html()),
        
-       events: {},
+       events: {
+           'click button#add-food-item': 'addItemToLog'
+       },
        
        initialize: function(options) {
            if (options.model) {
@@ -23,6 +25,11 @@ var app = app || {};
            this.$el.html(this.template({model: this.model}));
            
            return this;
+       },
+       
+       addItemToLog: function() {
+           console.log(this.model);
+           app.logItemsCollection.create(this.model);
        }
     });
 })(jQuery);
