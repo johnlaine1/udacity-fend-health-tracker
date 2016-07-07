@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Health Tracker!</title>
+        
+        <!-- build:css css/app.min.css -->
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <!-- endbuild -->
+    </head>
+    
+    <body>
+        
+        <!-- Templates -->
+        <script type="text/template" id="app-tpl">
+            <div id="ht-app" class="container">
+                <header id="header">
+                    <h1 id="title">Health Tracker</h1>
+                </header>
+                <section id="main-content"></section>
+                <footer>
+                    <h2>This is the footer</h2>
+                </footer>
+            </div>
+        </script>
+        <script type="text/template" id="home-tpl">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4>Food Search</h4>
+                            <input id="search-phrase" type="text" placeholder="Enter search term">
+                        </div>
+                        <ul class="pre-scrollable list-group" id="search-list"></ul> 
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4>Nutritional Information</h4>
+                        </div>
+                        <div class="panel-body" id="food-item-display">
+                            Select an item to view more info...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4>Food Diary</h4>
+                        </div>
+                        <div class="panel-body" id="log"></div>
+                    </div>                
+                </div>
+            </div>            
+        </script>
+        <script type="text/template" id="food-item-list-item-tpl">
+            <a href="#" class="list-group-item">
+            <%= model.brand_name %><br>
+            <%= model.item_name %><br>
+            <%= model.item_description %><br>
+            </a>
+        </script>
+        <script type="text/template" id="food-item-tpl">
+            <h2><%= model.brand_name %></h2>
+            <h4><%= model.item_description %></h4>
+            <form class="form-inline" id="add-log-item-form">
+                <div class="form-group">
+                    <label for="log-item-date">Date</label>
+                    <input type="date" class="form-control" id="log-item-date">
+                    <label class="sr-only"for="log-item-meal">Meal</label>
+                    <select class="form-control" id="log-item-meal" placeholder="Meal">
+                        <option selected disabled hidden>Meal</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="snack">Snack</option>
+                    </select>   
+                    <label class="sr-only" for="log-item-qty">Servings</label>
+                    <input type="number" class="form-control" id="log-item-qty" placeholder="Quantity" >
+                </div>
+                <button id="add-food-item" type="submit" class="btn btn-primary">Add item to food log</button>
+            </form>
+        </script>
+        <script type="text/template" id="log-tpl">
+            This is the food log template
+        </script>
+        <script type="text/template" id="log-item-list-item-tpl">
+            This is a log item list item template<br>
+            Item Name: <%= model.item_name %><br>
+            Item ID: <%= model.item_id %>
+        </script>
+        <script type="text/template" id="log-item-tpl">
+            This is a log item template<br>
+        </script>
+        
+        <!-- build:js js/app.min.js -->
+        <script src="lib/jquery/dist/jquery.min.js"></script>
+        <script src="lib/underscore/underscore-min.js"></script>
+        <script src="lib/backbone/backbone-min.js"></script>
+        <script src="lib/firebase/firebase.js"></script>
+        <script src="lib/backbonefire/dist/backbonefire.min.js"></script>
+        <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="scripts/models/foodItem.model.js"></script>
+        <script src="scripts/models/logItem.model.js"></script>
+        <script src="scripts/collections/foodItems.collection.js"></script>
+        <script src="scripts/collections/logItems.collection.js"></script>
+        <script src="scripts/views/app.view.js"></script>
+        <script src="scripts/views/home.view.js"></script>
+        <script src="scripts/views/foodItem.view.js"></script>
+        <script src="scripts/views/foodItemListItem.view.js"></script>
+        <script src="scripts/views/logList.view.js"></script>
+        <script src="scripts/views/logItem.view.js"></script>
+        <script src="scripts/views/logItemListItem.view.js"></script>
+        <script src="scripts/routers/app.router.js"></script>
+        <script src="scripts/app.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
