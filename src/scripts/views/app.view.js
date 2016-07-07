@@ -15,16 +15,15 @@ var app = app || {};
         },
        
         initialize: function() {
+            // Render the log view.
+            new app.LogView({collection: app.logItemsCollection});
+            
             // Cache some variables for later use.
             this.$searchPhrase = this.$('#search-phrase');
             this.$searchList = this.$('#search-list');
-            
-            
-            // Set up the listeners
-           
        },
        
-       getFoodItems: function() {
+        getFoodItems: function() {
             var searchPhrase = this.$searchPhrase.val();
             console.log(searchPhrase);
             var foodItems = new app.FoodItemsCollection({searchPhrase: searchPhrase});
@@ -32,14 +31,14 @@ var app = app || {};
             foodItems.fetch({success: this.renderSearchList.bind(this)});
        },
        
-       renderSearchList: function(items) {
-           var foodItemListItemView;
-           
+        renderSearchList: function(items) {
+           var view;
            // Clear the list first
            this.$searchList.html('');
+           
            for (var n in items.models) {
-               foodItemListItemView = new app.FoodItemListItemView({model: items.models[n]});
-               this.$searchList.append(foodItemListItemView.render().el);
+               view = new app.FoodItemListItemView({model: items.models[n]});
+               this.$searchList.append(view.render().el);
            }
        }
     });

@@ -14,12 +14,6 @@ var app = app || {};
             'click': 'showItemData'    
         },
         
-        initialize: function(options) {
-            if (options.model) {
-                this.model = options.model;
-            }
-        },
-        
         render: function() {
             var model = this.model.attributes.fields;
             this.$el.html(this.template({
