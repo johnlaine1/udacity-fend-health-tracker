@@ -12,10 +12,20 @@
     </head>
     
     <body>
-        <section id="ht-app" class="container">
-            <header id="header">
-                <h1 id="title">Health Tracker</h1>
-            </header>
+        
+        <!-- Templates -->
+        <script type="text/template" id="app-tpl">
+            <div id="ht-app" class="container">
+                <header id="header">
+                    <h1 id="title">Health Tracker</h1>
+                </header>
+                <section id="main-content"></section>
+                <footer>
+                    <h2>This is the footer</h2>
+                </footer>
+            </div>
+        </script>
+        <script type="text/template" id="home-tpl">
             <div class="row">
                 <div class="col-sm-4">
                     <div class="panel panel-primary">
@@ -43,17 +53,11 @@
                         <div class="panel-heading">
                             <h4>Food Diary</h4>
                         </div>
-                        <div class="panel-body" id="log">
-                            <ul id="log-list"></ul>
-                            User consumption info goes here...
-                        </div>
+                        <div class="panel-body" id="log"></div>
                     </div>                
                 </div>
-
-            </div>
-        </section>
-            
-        <!-- Templates -->
+            </div>            
+        </script>
         <script type="text/template" id="food-item-list-item-tpl">
             <a href="#" class="list-group-item">
             <%= model.brand_name %><br>
@@ -93,6 +97,7 @@
         <script type="text/template" id="log-item-tpl">
             This is a log item template<br>
         </script>
+        
         <!-- build:js js/app.min.js -->
         <script src="lib/jquery/dist/jquery.min.js"></script>
         <script src="lib/underscore/underscore-min.js"></script>
@@ -105,9 +110,10 @@
         <script src="scripts/collections/foodItems.collection.js"></script>
         <script src="scripts/collections/logItems.collection.js"></script>
         <script src="scripts/views/app.view.js"></script>
+        <script src="scripts/views/home.view.js"></script>
         <script src="scripts/views/foodItem.view.js"></script>
         <script src="scripts/views/foodItemListItem.view.js"></script>
-        <script src="scripts/views/log.view.js"></script>
+        <script src="scripts/views/logList.view.js"></script>
         <script src="scripts/views/logItem.view.js"></script>
         <script src="scripts/views/logItemListItem.view.js"></script>
         <script src="scripts/routers/app.router.js"></script>

@@ -4,17 +4,18 @@ var app = app || {};
 (function($) {
     'use strict';
     
-    app.LogView = Backbone.View.extend({
+    app.LogListView = Backbone.View.extend({
        
-       el: '#log',
+        tagName: 'ul',
+        
+        id: 'log-list',
        
-       events: {},
+        events: {},
        
-       template: _.template($('#log-tpl').html()),
+        template: _.template($('#log-tpl').html()),
        
-       initialize: function() {
+        initialize: function() {
            // Cache references to DOM elements
-           this.$list = this.$('#log-list');
            
            // Set up the event listeners
            this.listenTo(this.collection, 'add', this.addOne);
@@ -28,13 +29,15 @@ var app = app || {};
            this.collection.fetch({reset: true});
        },
        
-       addOne: function(model) {
+        addOne: function(model) {
            var view = new app.LogItemListItemView({model: model.attributes});
-           this.$list.append(view.render().el);
+           this.$el.append(view.render().el);
        },
        
-       addAll: function() {
-          this.$list.html('');
+        // This will get called on a collection 'reset' event, like when the
+        // collection is first populated from the database.
+        addAll: function() {
+          this.$el.html('');
           this.collection.each(this.addOne, this);
        },
     });
