@@ -11,14 +11,12 @@ var app = app || {};
        template: _.template($('#food-item-tpl').html()),
        
        events: {
-           'click button#add-food-item': 'addItemToLog'
+           'submit #add-log-item-form': 'addItemToLog'
+        //   'click button#add-food-item': 'addItemToLog'
+    
        },
        
-       initialize: function(options) {
-           if (options.model) {
-               this.model = options.model;
-           }
-       },
+       initialize: function() {},
        
        render: function() {
            this.$el.html('');
@@ -27,9 +25,18 @@ var app = app || {};
            return this;
        },
        
-       addItemToLog: function() {
-           console.log(this.model);
-           app.logItemsCollection.create(this.model);
+       addItemToLog: function(event) {
+            event.preventDefault();
+            this.model.log_item_date = this.$('#log-item-date').val();
+            this.model.log_item_meal = this.$('#log-item-meal').val();
+            this.model.log_item_qty = this.$('#log-item-qty').val();
+            
+            console.log($('#log-item-date').val());
+            console.log($('#log-item-meal').val());
+            console.log($('#log-item-qty').val());
+            console.log(this.model);
+            console.log(event);
+            app.logItemsCollection.create(this.model);
        }
     });
 })(jQuery);
