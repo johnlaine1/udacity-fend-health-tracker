@@ -11,7 +11,7 @@ var app = app || {};
         },
         
         home: function() {
-            new app.HomeView();
+            new app.HomeView().render().el;
             
             console.log('HOME route');
         }
