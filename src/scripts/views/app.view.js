@@ -9,23 +9,20 @@ define([
     
     var AppView = Backbone.View.extend({
        
-        el: 'body',
+        el: $('body'),
        
         template: _.template(appTemplate),
-       
-        events: {},
        
         initialize: function() {
             this.render();
         },
-       
+        
         render: function() {
             this.$el.empty();
             this.$el.append(this.template({}));
-            new HomeView();
-           
+            
             return this;
-       }
+        }
     });
     
     return AppView;

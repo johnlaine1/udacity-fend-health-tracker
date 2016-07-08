@@ -15,8 +15,11 @@ define([
        
         // This is the DOM element we are connecting to, located in
         // index.html
-        el: '#main-content',
-       
+        // el: '#main-content',
+        tagName: 'div',
+        className: 'this-is-a-test',
+        id: 'some-id',
+
         template: _.template(homeTemplate),
         
         events: {

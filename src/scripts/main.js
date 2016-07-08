@@ -35,7 +35,4 @@ require([
 	// Initialize routing and start Backbone.history()
 	new AppRouter();
 	Backbone.history.start();
-
-	// Initialize the application
-	new AppView();
 });
