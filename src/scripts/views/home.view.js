@@ -35,6 +35,8 @@ define([
             this.$searchPhrase = this.$('#search-phrase');
             this.$searchList = this.$('#search-list');
             this.$log = this.$('#log');
+            
+            this.render();
         },
         
         render: function() {
