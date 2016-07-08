@@ -1,14 +1,16 @@
-/* global jQuery Backbone _ */
-var app = app || {};
-
-(function($) {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'text!templates/logItemListItem.tpl.html'
+], function($, _, Backbone, logItemListItemTemplate) {
     'use strict';
     
-    app.LogItemListItemView = Backbone.View.extend({
+    var LogItemListItemView = Backbone.View.extend({
        
        tagName: 'li',
        
-       template: _.template($('#log-item-list-item-tpl').html()),
+       template: _.template(logItemListItemTemplate),
        
        events: {},
        
@@ -20,4 +22,7 @@ var app = app || {};
            return this;
        }
     });
-})(jQuery);
+    
+    return LogItemListItemView;    
+});
+

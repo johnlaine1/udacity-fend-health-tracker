@@ -1,13 +1,14 @@
-/* global Backbone */
-
-var app = app || {};
-
-(function() {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'models/foodItem.model'
+], function($, _, Backbone, FoodItem) {
     'use strict';
     
-    app.FoodItemsCollection = Backbone.Collection.extend({
+    var FoodItemsCollection = Backbone.Collection.extend({
         
-        model: app.FoodItem,
+        model: FoodItem,
         
         initialize: function(options) {
             console.log(options);
@@ -33,6 +34,10 @@ var app = app || {};
             console.log(response.hits);
             return response.hits;
         }
-        });
+    });
     
-})();
+    return FoodItemsCollection;    
+});
+
+        
+    

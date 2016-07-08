@@ -1,11 +1,11 @@
-/* global Backbone */
-
-var app = app || {};
-
-(function() {
+define([
+        'jquery',
+        'underscore',
+        'backbone'
+], function($, _, Backbone) {
     'use strict';
     
-    app.FoodItem = Backbone.Model.extend({
-        
-    });
-})();
+    var FoodItem = Backbone.Model.extend({});
+
+    return FoodItem;    
+});

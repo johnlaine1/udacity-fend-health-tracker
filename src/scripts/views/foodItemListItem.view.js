@@ -1,14 +1,17 @@
-/* global jQuery Backbone _ */
-var app = app || {};
-
-(function($) {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'views/foodItem.view',
+        'text!templates/foodItemListItem.tpl.html'
+], function($, _, Backbone, FoodItemView, foodItemListItemTemplate) {
     'use strict';
     
-    app.FoodItemListItemView = Backbone.View.extend({
+    var FoodItemListItemView = Backbone.View.extend({
         
         tagName: 'li',
         
-        template: _.template($('#food-item-list-item-tpl').html()),
+        template: _.template(foodItemListItemTemplate),
         
         events: {
             'click': 'showItemData'    
@@ -20,13 +23,17 @@ var app = app || {};
                 model: model
             }));
             
-            return this; // So we can chain methods together.
+            return this;
         },
         
         showItemData: function(event) {
             var model = this.model.attributes.fields;
-            var view = new app.FoodItemView({model: model});
+            var view = new FoodItemView({model: model});
             view.render().el;
         }
     });
-})(jQuery);
+    
+    return FoodItemListItemView;    
+});
+
+
