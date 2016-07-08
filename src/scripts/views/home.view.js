@@ -49,7 +49,7 @@ define([
         getFoodItems: function() {
             var searchPhrase = this.$searchPhrase.val();
             console.log(searchPhrase);
-            var foodItems = FoodItemsCollection({searchPhrase: searchPhrase});
+            var foodItems = new FoodItemsCollection({searchPhrase: searchPhrase});
             
             foodItems.fetch({success: this.renderSearchList.bind(this)});
        },
