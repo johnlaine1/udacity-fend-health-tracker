@@ -1,4 +1,3 @@
-/*global require*/
 'use strict';
 
 // Require.js allows us to configure shortcut alias
@@ -30,11 +29,11 @@ require([
 	'views/app.view',
 	'routers/app.router'
 ], function (Backbone, AppView, AppRouter) {
-	/*jshint nonew:false*/
+
 	// Initialize routing and start Backbone.history()
 	new AppRouter();
 	Backbone.history.start();
 
-	// Initialize the application view
+	// Initialize the application
 	new AppView();
 });
