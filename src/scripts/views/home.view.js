@@ -28,11 +28,13 @@ var app = app || {};
             this.$searchPhrase = this.$('#search-phrase');
             this.$searchList = this.$('#search-list');
             this.$log = this.$('#log');
+            
+            this.render();
         },
         
         render: function() {
             // Render the log view.
-            var logView = new app.LogListView({collection: app.logItemsCollection});
+            var logView = new app.LogView({collection: app.logItemsCollection});
             this.$log.append(logView.el);
             
             return this;

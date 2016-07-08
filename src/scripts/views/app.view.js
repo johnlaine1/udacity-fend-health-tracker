@@ -18,7 +18,8 @@ var app = app || {};
        
        render: function() {
            this.$el.empty();
-           this.$el.append(this.template({})); 
+           this.$el.append(this.template({}));
+           new app.HomeView();
            
            return this;
        }
