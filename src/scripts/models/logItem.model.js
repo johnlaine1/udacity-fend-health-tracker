@@ -1,11 +1,11 @@
-/* global Backbone */
-
-var app = app || {};
-
-(function() {
+define([
+        'jquery',
+        'underscore',
+        'backbone'
+], function($, _, Backbone) {
     'use strict';
     
-    app.LogItem = Backbone.Model.extend({
-        
-    });
-})();
+    var LogItem = Backbone.Model.extend({});
+    
+    return LogItem;
+});

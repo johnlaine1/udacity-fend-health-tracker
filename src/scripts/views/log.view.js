@@ -1,10 +1,13 @@
-/* global jQuery Backbone _ */
-var app = app || {};
-
-(function($) {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'views/logItemListItem.view',
+        'text!templates/log.tpl.html'
+], function($, _, Backbone, LogItemListItemView, logTemplate) {
     'use strict';
     
-    app.LogView = Backbone.View.extend({
+    var LogView = Backbone.View.extend({
        
         tagName: 'ul',
         
@@ -12,7 +15,7 @@ var app = app || {};
        
         events: {},
        
-        template: _.template($('#log-tpl').html()),
+        template: _.template(logTemplate),
        
         initialize: function() {
            // Cache references to DOM elements
@@ -30,7 +33,7 @@ var app = app || {};
        },
        
         addOne: function(model) {
-           var view = new app.LogItemListItemView({model: model.attributes});
+           var view = new LogItemListItemView({model: model.attributes});
            this.$el.append(view.render().el);
        },
        
@@ -41,4 +44,7 @@ var app = app || {};
           this.collection.each(this.addOne, this);
        },
     });
-})(jQuery);
+    
+    return LogView;    
+});
+

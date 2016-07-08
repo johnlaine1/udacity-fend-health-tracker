@@ -20,7 +20,9 @@ require.config({
 		jquery: '../lib/jquery/dist/jquery',
 		underscore: '../lib/underscore/underscore',
 		backbone: '../lib/backbone/backbone',
-		text: '../lib/text/text.js'
+		text: '../lib/text/text',
+		firebase: '../lib/firebase/firebase',
+		backbonefire: 'backbonefire'
 	}
 });
 

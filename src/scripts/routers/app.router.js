@@ -1,19 +1,22 @@
-/* global Backbone */
-var app = app || {};
-
-(function() {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'views/home.view'
+], function($, _, Backbone, HomeView) {
     'use strict';
     
-    app.AppRouter = Backbone.Router.extend({
+    var AppRouter = Backbone.Router.extend({
         // Define the routes for this router.
         routes: {
             "": "home"
         },
         
         home: function() {
-            new app.HomeView().render().el;
-            
+            new HomeView().render().el;
             console.log('HOME route');
         }
     });
-})();
+    
+    return AppRouter;    
+});

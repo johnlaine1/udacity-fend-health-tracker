@@ -1,14 +1,17 @@
-/* global jQuery Backbone _ */
-var app = app || {};
-
-(function($) {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'collections/logItems.collection',
+        'text!templates/foodItem.tpl.html'
+], function($, _, Backbone, logItemsCollection, foodItemTemplate) {
     'use strict';
     
-    app.FoodItemView = Backbone.View.extend({
+    var FoodItemView = Backbone.View.extend({
        
        el: '#food-item-display',
        
-       template: _.template($('#food-item-tpl').html()),
+       template: _.template(foodItemTemplate),
        
        events: {
            'submit #add-log-item-form': 'addItemToLog'
@@ -36,7 +39,13 @@ var app = app || {};
             console.log($('#log-item-qty').val());
             console.log(this.model);
             console.log(event);
-            app.logItemsCollection.create(this.model);
+            logItemsCollection.create(this.model);
        }
     });
-})(jQuery);
+    
+    return FoodItemView;    
+});
+
+
+
+

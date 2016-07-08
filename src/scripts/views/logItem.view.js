@@ -1,15 +1,20 @@
-/* global jQuery Backbone _ */
-var app = app || {};
-
-(function($) {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'text!templates/logItem.tpl.html'
+], function($, _, Backbone, logItemTemplate) {
     'use strict';
     
-    app.LogItemView = Backbone.View.extend({
+    var LogItemView = Backbone.View.extend({
        
-       el: '',
+        el: '',
        
-       template: _.template($('#log-item-tpl').html()),
+        template: _.template(logItemTemplate),
        
-       events: {},
+        events: {},
     });
-})(jQuery);
+    
+    return LogItemView;    
+});
+

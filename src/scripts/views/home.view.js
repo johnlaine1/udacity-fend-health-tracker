@@ -1,16 +1,23 @@
-/* global Backbone _ jQuery*/
-var app = app || {};
-
-(function($) {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'views/foodItemListItem.view',
+        'views/log.view',
+        'collections/logItems.collection',
+        'collections/foodItems.collection',
+        'text!templates/home.tpl.html'
+], function($, _, Backbone, FoodItemListItemView, LogView, 
+            LogItemsCollection, FoodItemsCollection, homeTemplate) {
     'use strict';
     
-    app.HomeView = Backbone.View.extend({
+    var HomeView = Backbone.View.extend({
        
         // This is the DOM element we are connecting to, located in
         // index.html
         el: '#main-content',
        
-        template: _.template($('#home-tpl').html()),
+        template: _.template(homeTemplate),
         
         events: {
             'keyup #search-phrase': 'getFoodItems'
@@ -32,16 +39,15 @@ var app = app || {};
         
         render: function() {
             // Render the log view.
-            var logView = new app.LogListView({collection: app.logItemsCollection});
+            var logView = new LogView({collection: LogItemsCollection});
             this.$log.append(logView.el);
-            
             return this;
         },
        
         getFoodItems: function() {
             var searchPhrase = this.$searchPhrase.val();
             console.log(searchPhrase);
-            var foodItems = new app.FoodItemsCollection({searchPhrase: searchPhrase});
+            var foodItems = FoodItemsCollection({searchPhrase: searchPhrase});
             
             foodItems.fetch({success: this.renderSearchList.bind(this)});
        },
@@ -52,10 +58,12 @@ var app = app || {};
            this.$searchList.html('');
            
            for (var n in items.models) {
-               view = new app.FoodItemListItemView({model: items.models[n]});
+               view = new FoodItemListItemView({model: items.models[n]});
                this.$searchList.append(view.render().el);
            }
        }
     });
     
-})(jQuery);
+    return HomeView;    
+});
+
