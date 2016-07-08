@@ -18,6 +18,8 @@
   "dependencies": {
     "backbonefire": "^0.5.1",
     "bootstrap": "^3.3.6",
-    "jquery": "^3.0.0"
+    "jquery": "^3.0.0",
+    "requirejs": "^2.2.0",
+    "text": "requirejs-text#^2.0.15"
   }
 }

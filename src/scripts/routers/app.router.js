@@ -7,11 +7,13 @@ var app = app || {};
     app.AppRouter = Backbone.Router.extend({
         // Define the routes for this router.
         routes: {
-            '*filter': 'setFilter'
+            "": "home"
         },
-
-        setFilter: function(param) {
-            console.log(param);
+        
+        home: function() {
+            new app.HomeView().render().el;
+            
+            console.log('HOME route');
         }
     });
 })();

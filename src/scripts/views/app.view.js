@@ -1,27 +1,32 @@
-/* global Backbone _ jQuery */
-var app = app || {};
-
-(function($) {
+define([
+        'jquery',
+        'underscore',
+        'backbone',
+        'views/home.tpl.view',
+        'text!/templates/app.html'
+], function($, _, Backbone, HomeView, appTemplate) {
     'use strict';
     
-    app.AppView = Backbone.View.extend({
+    var AppView = Backbone.View.extend({
        
-       el: 'body',
+        el: 'body',
        
-       template: _.template($('#app-tpl').html()),
+        template: _.template(appTemplate),
        
-       events: {},
+        events: {},
        
         initialize: function() {
             this.render();
         },
        
-       render: function() {
-           this.$el.empty();
-           this.$el.append(this.template({}));
-           new app.HomeView();
+        render: function() {
+            this.$el.empty();
+            this.$el.append(this.template({}));
+            new HomeView();
            
-           return this;
+            return this;
        }
     });
-})(jQuery);
+    
+    return AppView;
+});

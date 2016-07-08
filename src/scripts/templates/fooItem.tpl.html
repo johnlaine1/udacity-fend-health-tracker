@@ -1,0 +1,19 @@
+<h2><%= model.brand_name %></h2>
+<h4><%= model.item_description %></h4>
+<form class="form-inline" id="add-log-item-form">
+    <div class="form-group">
+        <label for="log-item-date">Date</label>
+        <input type="date" class="form-control" id="log-item-date">
+        <label class="sr-only"for="log-item-meal">Meal</label>
+        <select class="form-control" id="log-item-meal" placeholder="Meal">
+            <option selected disabled hidden>Meal</option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+        </select>   
+        <label class="sr-only" for="log-item-qty">Servings</label>
+        <input type="number" class="form-control" id="log-item-qty" placeholder="Quantity" >
+    </div>
+    <button id="add-food-item" type="submit" class="btn btn-primary">Add item to food log</button>
+</form>
