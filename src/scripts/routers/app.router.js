@@ -20,7 +20,7 @@ define([
         },
         
         home: function() {
-            new HomeView({el: $('#main-content')});
+            new HomeView().render().el;
         }
     });
     
