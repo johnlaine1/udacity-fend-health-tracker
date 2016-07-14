@@ -30,7 +30,7 @@ define([
            // this will cause the addAll function to run and therefore populate
            // the view.
            this.collection.fetch({reset: true});
-       },
+        },
        
         addOne: function(model) {
            var view = new LogItemListItemView({model: model.attributes});

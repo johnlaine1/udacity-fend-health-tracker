@@ -11,16 +11,24 @@ define([
         
         initialize: function() {
             // This is the base html skeleton for the app.
-            new AppView();
+            new AppView().render();
         },
         
         // Define the routes for this router.
         routes: {
-            "": "home"
+            '': 'home',
+            'test': 'test'
         },
         
         home: function() {
-            new HomeView().render().el;
+            // console.log('home function');
+            var homeView = new HomeView();
+            $('#main-content').html(homeView.render().el);
+        },
+        
+        test: function() {
+            console.log('test function');
+            this.$mainContent.html('The test page');
         }
     });
     

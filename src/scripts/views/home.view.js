@@ -13,24 +13,31 @@ define([
     
     var HomeView = Backbone.View.extend({
         
-        el: '#main-content',
+        tagName: 'div',
+        
+        id: 'home-view',
         
         events: {
             'keyup #search-phrase': 'getFoodItems'
         },
-       
-        initialize: function() {},
+        
+        initialize: function() {
+            this.logView = new LogView({collection: LogItemsCollection});
+            
+        },
         
         render: function() {
             // We need to append the template to the 'main-content first so 
             // that the elements are available to nested views.
             this.$el.html(homeTemplate);
+            
+            // Cache some variable needed later
             this.$searchPhrase = this.$('#search-phrase');
             this.$searchList = this.$('#search-list');
             this.$log = this.$('#log');
+            
             // Render the log view.
-            var logView = new LogView({collection: LogItemsCollection});
-            this.$log.append(logView.el);
+            this.$log.html(this.logView.$el);
             
             return this;
         },

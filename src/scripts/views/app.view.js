@@ -10,17 +10,9 @@ define([
     var AppView = Backbone.View.extend({
        
         el: $('body'),
-       
-        template: _.template(appTemplate),
-       
-        initialize: function() {
-            this.render();
-        },
         
         render: function() {
-            this.$el.empty();
-            this.$el.append(this.template({}));
-            
+            this.$el.html(appTemplate);
             return this;
         }
     });

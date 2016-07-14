@@ -2,6 +2,8 @@
 
 // Require.js allows us to configure shortcut alias
 require.config({
+	// This is a hack to prevent caching during development.
+	urlArgs: "bust=" + (new Date()).getTime(),
 	// The shim config allows us to configure dependencies for
 	// scripts that do not call define() to register a module
 	shim: {
@@ -28,9 +30,8 @@ require.config({
 
 require([
 	'backbone',
-	'views/app.view',
 	'routers/app.router'
-], function (Backbone, AppView, AppRouter) {
+], function (Backbone, AppRouter) {
 
 	// Initialize routing and start Backbone.history()
 	new AppRouter();
