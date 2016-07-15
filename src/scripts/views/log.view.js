@@ -2,9 +2,9 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'views/logItemListItem.view',
+        'views/logListItem.view',
         'text!templates/log.tpl.html'
-], function($, _, Backbone, LogItemListItemView, logTemplate) {
+], function($, _, Backbone, LogListItemView, logTemplate) {
     'use strict';
     
     var LogView = Backbone.View.extend({
@@ -33,7 +33,7 @@ define([
         },
        
         addOne: function(model) {
-           var view = new LogItemListItemView({model: model.attributes});
+           var view = new LogListItemView({model: model});
            this.$el.append(view.render().el);
        },
        

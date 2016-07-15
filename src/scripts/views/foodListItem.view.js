@@ -7,7 +7,7 @@ define([
 ], function($, _, Backbone, FoodItemView, foodItemListItemTemplate) {
     'use strict';
     
-    var FoodItemListItemView = Backbone.View.extend({
+    var FoodListItemView = Backbone.View.extend({
         
         tagName: 'li',
         
@@ -33,7 +33,7 @@ define([
         }
     });
     
-    return FoodItemListItemView;    
+    return FoodListItemView;    
 });
 
 

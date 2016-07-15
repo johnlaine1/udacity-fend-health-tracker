@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone, logItemListItemTemplate) {
     'use strict';
     
-    var LogItemListItemView = Backbone.View.extend({
+    var LogListItemView = Backbone.View.extend({
        
        tagName: 'li',
        
@@ -17,12 +17,11 @@ define([
        initialize: function() {},
        
        render: function() {
-        //   console.log(this.model);
-           this.$el.html(this.template({model: this.model}));
+           this.$el.html(this.template(this.model.toJSON()));
            return this;
        }
     });
     
-    return LogItemListItemView;    
+    return LogListItemView;    
 });
 
