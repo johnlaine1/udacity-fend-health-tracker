@@ -9,16 +9,16 @@ define([
     
     var LogView = Backbone.View.extend({
        
-        tagName: 'ul',
+        tagName: 'div',
         
-        id: 'log-list',
+        id: 'log',
        
         events: {},
        
         template: _.template(logTemplate),
        
         initialize: function() {
-           // Cache references to DOM elements
+           
            
            // Set up the event listeners
            this.listenTo(this.collection, 'add', this.addOne);
@@ -30,11 +30,18 @@ define([
            // this will cause the addAll function to run and therefore populate
            // the view.
            this.collection.fetch({reset: true});
+           
+           this.render();
         },
        
+        render: function() {
+            this.$el.html(this.template);
+            return this;
+        },
+        
         addOne: function(model) {
            var view = new LogListItemView({model: model});
-           this.$el.append(view.render().el);
+           this.$('.log-list ul').append(view.render().el);
        },
        
         // This will get called on a collection 'reset' event, like when the
