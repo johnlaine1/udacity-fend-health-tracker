@@ -2,15 +2,15 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'text!templates/logItemListItem.tpl.html'
-], function($, _, Backbone, logItemListItemTemplate) {
+        'text!templates/logListItem.tpl.html'
+], function($, _, Backbone, logListItemTemplate) {
     'use strict';
     
     var LogListItemView = Backbone.View.extend({
        
        tagName: 'li',
        
-       template: _.template(logItemListItemTemplate),
+       template: _.template(logListItemTemplate),
        
        events: {},
        

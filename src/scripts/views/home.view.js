@@ -20,7 +20,7 @@ define([
         template: homeTemplate,
         
         events: {
-            'keyup #search-phrase': 'getFoodItems'
+            'keyup #food-search-input': 'getFoodItems'
         },
         
         initialize: function() {
