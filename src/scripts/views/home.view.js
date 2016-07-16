@@ -2,12 +2,12 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'views/foodItemListItem.view',
+        'views/foodListItem.view',
         'views/log.view',
         'collections/logItems.collection',
         'collections/foodItems.collection',
         'text!templates/home.tpl.html'
-], function($, _, Backbone, FoodItemListItemView, LogView, 
+], function($, _, Backbone, FoodListItemView, LogView, 
             LogItemsCollection, FoodItemsCollection, homeTemplate) {
     'use strict';
     
@@ -17,8 +17,10 @@ define([
         
         id: 'home-view',
         
+        template: homeTemplate,
+        
         events: {
-            'keyup #search-phrase': 'getFoodItems'
+            'keyup #food-search-input': 'getFoodItems'
         },
         
         initialize: function() {
@@ -29,11 +31,11 @@ define([
         render: function() {
             // We need to append the template to the 'main-content first so 
             // that the elements are available to nested views.
-            this.$el.html(homeTemplate);
+            this.$el.html(this.template);
             
             // Cache some variable needed later
-            this.$searchPhrase = this.$('#search-phrase');
-            this.$searchList = this.$('#search-list');
+            this.$searchInput = this.$('#food-search-input');
+            this.$searchList = this.$('#food-search-result');
             this.$log = this.$('#log');
             
             // Render the log view.
@@ -43,7 +45,7 @@ define([
         },
        
         getFoodItems: function() {
-            var searchPhrase = this.$searchPhrase.val();
+            var searchPhrase = this.$searchInput.val();
             console.log(searchPhrase);
             var foodItems = new FoodItemsCollection({searchPhrase: searchPhrase});
             
@@ -56,7 +58,7 @@ define([
            this.$searchList.html('');
            
            for (var n in items.models) {
-               view = new FoodItemListItemView({model: items.models[n]});
+               view = new FoodListItemView({model: items.models[n]});
                this.$searchList.append(view.render().el);
            }
        }

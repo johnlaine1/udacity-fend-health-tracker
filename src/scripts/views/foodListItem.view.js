@@ -3,15 +3,15 @@ define([
         'underscore',
         'backbone',
         'views/foodItem.view',
-        'text!templates/foodItemListItem.tpl.html'
-], function($, _, Backbone, FoodItemView, foodItemListItemTemplate) {
+        'text!templates/foodListItem.tpl.html'
+], function($, _, Backbone, FoodItemView, foodListItemTemplate) {
     'use strict';
     
-    var FoodItemListItemView = Backbone.View.extend({
+    var FoodListItemView = Backbone.View.extend({
         
         tagName: 'li',
         
-        template: _.template(foodItemListItemTemplate),
+        template: _.template(foodListItemTemplate),
         
         events: {
             'click': 'showItemData'    
@@ -33,7 +33,7 @@ define([
         }
     });
     
-    return FoodItemListItemView;    
+    return FoodListItemView;    
 });
 
 
