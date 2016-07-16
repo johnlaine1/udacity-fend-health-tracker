@@ -9,6 +9,8 @@ define([
     
     var AppRouter = Backbone.Router.extend({
         
+        homeView: null,
+        
         initialize: function() {
             // This is the base html skeleton for the app.
             new AppView().render();
@@ -21,14 +23,13 @@ define([
         },
         
         home: function() {
-            // console.log('home function');
-            var homeView = new HomeView();
-            $('#main-content').html(homeView.render().el);
+            this.homeView = this.homeView || new HomeView();
+            $('#main-content').html(this.homeView.render().el);
         },
         
         test: function() {
             console.log('test function');
-            this.$mainContent.html('The test page');
+            $('#main-content').html('The test page');
         }
     });
     
