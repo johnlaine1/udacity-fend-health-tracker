@@ -32,7 +32,7 @@ define([
         getFoodItems: function() {
             var searchPhrase = this.$searchInput.val();
             console.log(searchPhrase);
-            var foodItems = new FoodItemsCollection({searchPhrase: searchPhrase});
+            var foodItems = new this.collection({searchPhrase: searchPhrase});
             
             foodItems.fetch({success: this.renderSearchList.bind(this)});
        },
