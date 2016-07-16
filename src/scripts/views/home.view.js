@@ -7,7 +7,7 @@ define([
         'collections/logItems.collection',
         'collections/foodItems.collection',
         'text!templates/home.tpl.html'
-], function($, _, Backbone, FoodSearchView, LogView, LogItemsCollection, FoodItemsCollection, homeTemplate) {
+], function($, _, Backbone, FoodSearchView, LogView, logItemsCollection, foodItemsCollection, homeTemplate) {
     'use strict';
     
     var HomeView = Backbone.View.extend({
@@ -19,8 +19,8 @@ define([
         template: homeTemplate,
         
         initialize: function() {
-            this.logView = new LogView({collection: LogItemsCollection});
-            this.foodSearchView = new FoodSearchView({collection: FoodItemsCollection});
+            this.logView = new LogView({collection: logItemsCollection});
+            this.foodSearchView = new FoodSearchView({collection: foodItemsCollection});
         },
         
         render: function() {

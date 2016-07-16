@@ -20,33 +20,45 @@ define([
         },
         
         initialize: function() {
-            this.render();  
-        },
-        
-        render: function() {
+            // This template needs to be available right away.
             this.$el.html(this.template);
+            
+            // Cache variables for later use.
             this.$searchInput = this.$('#food-search-input');
-            this.$searchList = this.$('#food-search-result');            
+            this.$searchList = this.$('#food-search-result');
+            
+            // Set up the event listeners
+            this.listenTo(this.collection, 'reset', this.renderSearchList);
         },
-        
+
         getFoodItems: function() {
             var searchPhrase = this.$searchInput.val();
             console.log(searchPhrase);
-            var foodItems = new this.collection({searchPhrase: searchPhrase});
             
-            foodItems.fetch({success: this.renderSearchList.bind(this)});
+            var options = {
+                url: this.collection.url + '/' + searchPhrase,
+                reset: true,
+                data: {
+                    appId: '92d448d9',
+                    appKey: '846724b5b7bfc300557cf5140f806791',
+                    results: '0:5',
+                    fields: '*'
+                }
+            }
+            
+            this.collection.fetch(options);
        },
        
-        renderSearchList: function(items) {
-           var view;
-           // Clear the list first
-           this.$searchList.html('');
-           
-           for (var n in items.models) {
-               view = new FoodListItemView({model: items.models[n]});
-               this.$searchList.append(view.render().el);
-           }
-       }        
+        renderSearchList: function() {
+            var foodItem;
+            
+            // Clear out the existing items.
+            this.$searchList.empty();
+            this.collection.each(function(result) {
+               foodItem = new FoodListItemView({model: result});
+               this.$searchList.append(foodItem.render().el);
+            }, this);  
+        }
     });
     
     return FoodSearchView;

@@ -18,8 +18,6 @@ define([
         template: _.template(logTemplate),
        
         initialize: function() {
-           
-           
            // Set up the event listeners
            this.listenTo(this.collection, 'add', this.addOne);
            this.listenTo(this.collection, 'reset', this.addAll);
