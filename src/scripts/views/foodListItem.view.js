@@ -9,8 +9,10 @@ define([
     
     var FoodListItemView = Backbone.View.extend({
         
-        tagName: 'li',
+        tagName: 'tr',
         
+        className: 'food-item',
+
         template: _.template(foodListItemTemplate),
         
         events: {
@@ -27,9 +29,16 @@ define([
         },
         
         showItemData: function(event) {
+            this.$el.after('<div class="food-info-display">Hello</div>');
+            // this.$el.toggleClass('food-info-display');
             var model = this.model.attributes.fields;
-            var view = new FoodItemView({model: model});
+            var view = new FoodItemView({
+                model: model,
+                el: '.food-info-display'
+            });
             view.render().el;
+            
+            
         }
     });
     
