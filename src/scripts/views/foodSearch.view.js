@@ -60,7 +60,7 @@ define([
             this.$searchList.empty();
             this.collection.each(function(model) {
                foodItem = new FoodListItemView({model: model});
-               this.$searchList.append(foodItem.render().el);
+              this.$searchList.append(foodItem.render().el);
             }, this);  
         }
     });

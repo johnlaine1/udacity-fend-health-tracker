@@ -16,6 +16,7 @@ define([
         template: _.template(foodListItemTemplate),
         
         events: {
+            'click .food-data' : 'showAddForm',
             'submit #add-log-item-form': 'addItemToLog'
         },
         
@@ -24,7 +25,7 @@ define([
             return this;
         },
         
-       addItemToLog: function(event) {
+        addItemToLog: function(event) {
             event.preventDefault();
             this.model.log_item_date = this.$('#log-item-date').val();
             this.model.log_item_meal = this.$('#log-item-meal').val();
@@ -36,7 +37,12 @@ define([
             console.log(this.model);
             console.log(event);
             logItemsCollection.create(this.model.toJSON());
-       }        
+       },   
+       
+        showAddForm: function() {
+            console.log('showAddForm');
+            this.$('.food-detail').toggle();
+        }
     });
     
     return FoodListItemView;    
