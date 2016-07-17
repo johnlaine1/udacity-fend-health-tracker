@@ -12,9 +12,13 @@ define([
 
         url: 'https://api.nutritionix.com/v1_1/search',
         
+        // Manipulate the data so we get just what we want.
         parse: function(response) {
-            console.log(response.hits);
-            return response.hits;
+            var models = [];
+            response.hits.forEach(function(data) {
+                models.push(data.fields);
+            });
+            return models;
         }
     });
     

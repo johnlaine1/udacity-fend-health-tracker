@@ -33,20 +33,24 @@ define([
 
         getFoodItems: function() {
             var searchPhrase = this.$searchInput.val();
-            console.log(searchPhrase);
             
-            var options = {
-                url: this.collection.url + '/' + searchPhrase,
-                reset: true,
-                data: {
-                    appId: '92d448d9',
-                    appKey: '846724b5b7bfc300557cf5140f806791',
-                    results: '0:5',
-                    fields: '*'
+            if (!searchPhrase) {
+                this.collection.reset();
+            } else {
+            
+                var options = {
+                    url: this.collection.url + '/' + searchPhrase,
+                    reset: true,
+                    data: {
+                        appId: '92d448d9',
+                        appKey: '846724b5b7bfc300557cf5140f806791',
+                        results: '0:5',
+                        fields: '*'
+                    }
                 }
+                
+                this.collection.fetch(options);                
             }
-            
-            this.collection.fetch(options);
        },
        
         renderSearchList: function() {
@@ -54,9 +58,9 @@ define([
             
             // Clear out the existing items.
             this.$searchList.empty();
-            this.collection.each(function(result) {
-               foodItem = new FoodListItemView({model: result});
-               this.$searchList.append(foodItem.render().el);
+            this.collection.each(function(model) {
+               foodItem = new FoodListItemView({model: model});
+              this.$searchList.append(foodItem.render().el);
             }, this);  
         }
     });
