@@ -9,7 +9,7 @@ define([
     
     var FoodItemView = Backbone.View.extend({
        
-       el: '#food-item-display',
+    //   el: '#food-item-display',
        
        template: _.template(foodItemTemplate),
        

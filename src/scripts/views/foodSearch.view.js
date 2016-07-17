@@ -51,11 +51,13 @@ define([
        
         renderSearchList: function() {
             var foodItem;
+            var model;
             
             // Clear out the existing items.
             this.$searchList.empty();
             this.collection.each(function(result) {
-               foodItem = new FoodListItemView({model: result});
+               model = result.attributes.fields;
+               foodItem = new FoodListItemView({model: model});
                this.$searchList.append(foodItem.render().el);
             }, this);  
         }

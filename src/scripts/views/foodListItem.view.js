@@ -2,9 +2,9 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'views/foodItem.view',
+        'collections/logItems.collection',
         'text!templates/foodListItem.tpl.html'
-], function($, _, Backbone, FoodItemView, foodListItemTemplate) {
+], function($, _, Backbone, logItemsCollection, foodListItemTemplate) {
     'use strict';
     
     var FoodListItemView = Backbone.View.extend({
@@ -16,11 +16,11 @@ define([
         template: _.template(foodListItemTemplate),
         
         events: {
-            'click': 'showItemData'    
+            'submit #add-log-item-form': 'addItemToLog'
         },
         
         render: function() {
-            var model = this.model.attributes.fields;
+            var model = this.model;
             this.$el.html(this.template({
                 model: model
             }));
@@ -28,18 +28,19 @@ define([
             return this;
         },
         
-        showItemData: function(event) {
-            this.$el.after('<div class="food-info-display">Hello</div>');
-            // this.$el.toggleClass('food-info-display');
-            var model = this.model.attributes.fields;
-            var view = new FoodItemView({
-                model: model,
-                el: '.food-info-display'
-            });
-            view.render().el;
+       addItemToLog: function(event) {
+            event.preventDefault();
+            this.model.log_item_date = this.$('#log-item-date').val();
+            this.model.log_item_meal = this.$('#log-item-meal').val();
+            this.model.log_item_qty = this.$('#log-item-qty').val();
             
-            
-        }
+            console.log($('#log-item-date').val());
+            console.log($('#log-item-meal').val());
+            console.log($('#log-item-qty').val());
+            console.log(this.model);
+            console.log(event);
+            logItemsCollection.create(this.model);
+       }        
     });
     
     return FoodListItemView;    
