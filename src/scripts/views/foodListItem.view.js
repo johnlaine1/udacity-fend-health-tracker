@@ -20,11 +20,7 @@ define([
         },
         
         render: function() {
-            var model = this.model;
-            this.$el.html(this.template({
-                model: model
-            }));
-            
+            this.$el.html(this.template(this.model.toJSON()));            
             return this;
         },
         
@@ -39,7 +35,7 @@ define([
             console.log($('#log-item-qty').val());
             console.log(this.model);
             console.log(event);
-            logItemsCollection.create(this.model);
+            logItemsCollection.create(this.model.toJSON());
        }        
     });
     

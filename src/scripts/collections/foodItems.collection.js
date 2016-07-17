@@ -13,8 +13,13 @@ define([
         url: 'https://api.nutritionix.com/v1_1/search',
         
         parse: function(response) {
+            var models = [];
             console.log(response.hits);
-            return response.hits;
+            response.hits.forEach(function(data) {
+                models.push(data.fields);
+            });
+            console.log(models);
+            return models;
         }
     });
     
