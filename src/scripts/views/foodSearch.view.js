@@ -3,8 +3,9 @@ define([
         'underscore',
         'backbone',
         'views/foodListItem.view',
+        'views/logAddForm.view',
         'text!templates/foodSearch.tpl.html'
-], function($, _, Backbone, FoodListItemView, foodSearchTemplate) {
+], function($, _, Backbone, FoodListItemView, LogAddFormView, foodSearchTemplate) {
     'use strict';
     
     var FoodSearchView = Backbone.View.extend({
@@ -16,7 +17,8 @@ define([
         template: foodSearchTemplate,
         
         events: {
-            'keyup #food-search-input': 'getFoodItems'
+            'keyup #food-search-input': 'getFoodItems',
+            'click tr.food-item' : 'showAddForm'
         },
         
         initialize: function() {
@@ -55,14 +57,22 @@ define([
        
         renderSearchList: function() {
             var foodItem;
+            var logAddForm;
             
             // Clear out the existing items.
             this.$searchList.empty();
             this.collection.each(function(model) {
-               foodItem = new FoodListItemView({model: model});
-              this.$searchList.append(foodItem.render().el);
+                foodItem = new FoodListItemView({model: model});
+                logAddForm = new LogAddFormView({model: model});
+                this.$searchList.append(foodItem.render().el);
+                this.$searchList.append(logAddForm.render().el);
             }, this);  
-        }
+        },
+        
+        showAddForm: function(event) {
+            var itemId = event.currentTarget.id;
+            this.$('tr#' + itemId + '.food-detail').toggle();
+        },        
     });
     
     return FoodSearchView;
