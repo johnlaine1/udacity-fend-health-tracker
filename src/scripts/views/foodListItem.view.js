@@ -9,12 +9,14 @@ define([
     
     var FoodListItemView = Backbone.View.extend({
         
-        tagName: 'tr',
-        
-        className: 'food-item',
+        tagName: 'tbody',
         
         id: function() {
             return this.model.get('item_id');
+        },
+        
+        events: {
+            'click tr.food-item' : 'showAddForm'
         },
 
         template: _.template(foodListItemTemplate),
@@ -23,6 +25,10 @@ define([
             this.$el.html(this.template(this.model.toJSON()));            
             return this;
         },
+        
+        showAddForm: function(event) {
+            this.$('tr.food-detail').toggle();
+        }         
     });
     
     return FoodListItemView;    
