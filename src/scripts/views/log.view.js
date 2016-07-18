@@ -39,7 +39,7 @@ define([
         
         addOne: function(model) {
            var view = new LogListItemView({model: model});
-           this.$('.log-list ul').append(view.render().el);
+           this.$('#log-list').append(view.render().el);
        },
        
         // This will get called on a collection 'reset' event, like when the
