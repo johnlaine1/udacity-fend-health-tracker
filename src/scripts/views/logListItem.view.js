@@ -8,7 +8,7 @@ define([
     
     var LogListItemView = Backbone.View.extend({
        
-       tagName: 'tr',
+       tagName: 'tbody',
        
        template: _.template(logListItemTemplate),
        
