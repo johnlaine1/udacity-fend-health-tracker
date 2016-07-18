@@ -3,8 +3,9 @@ define([
         'underscore',
         'backbone',
         'views/foodListItem.view',
-        'text!templates/foodSearch.tpl.html'
-], function($, _, Backbone, FoodListItemView, foodSearchTemplate) {
+        'text!templates/foodSearch.tpl.html',
+        'text!templates/foodSearchTableHeader.tpl.html'
+], function($, _, Backbone, FoodListItemView, foodSearchTemplate, foodSearchTableHeaderTemplate) {
     'use strict';
     
     var FoodSearchView = Backbone.View.extend({
@@ -14,6 +15,8 @@ define([
         id: 'food-search',
         
         template: foodSearchTemplate,
+        
+        tableHeaderTemplate: foodSearchTableHeaderTemplate,
         
         events: {
             'keyup #food-search-input': 'getFoodItems'
@@ -35,8 +38,13 @@ define([
         getFoodItems: function() {
             var searchPhrase = this.$searchInput.val();
             
+            // If the input box is empty, clear the results.
             if (!searchPhrase) {
                 this.collection.reset();
+                
+                // This is needed to clear out the table headers when there are
+                // no results to view.
+                this.$searchList.empty();
             } else {
             
                 var options = {
@@ -59,6 +67,7 @@ define([
             
             // Clear out the existing items.
             this.$searchList.empty();
+            this.$searchList.append(this.tableHeaderTemplate);
             this.collection.each(function(model) {
                 foodItem = new FoodListItemView({model: model});
                 this.$searchList.append(foodItem.render().el);
