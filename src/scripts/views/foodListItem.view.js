@@ -33,15 +33,15 @@ define([
         
         addItemToLog: function(event) {
             event.preventDefault();
-            this.model.log_item_date = this.$('#log-item-date').val();
-            this.model.log_item_meal = this.$('#log-item-meal').val();
-            this.model.log_item_qty = this.$('#log-item-qty').val();
             
-            console.log($('#log-item-date').val());
-            console.log($('#log-item-meal').val());
-            console.log($('#log-item-qty').val());
-            console.log(this.model);
-            console.log(event);
+            var date = this.$('#log-item-date').val();
+            var meal = this.$('#log-item-meal').val();
+            var qty  = this.$('#log-item-qty').val();
+            
+            this.model.set('log_item_date', date);
+            this.model.set('log_item_meal', meal);
+            this.model.set('log_item_qty', qty);
+
             logItemsCollection.create(this.model.toJSON());
        }        
     });

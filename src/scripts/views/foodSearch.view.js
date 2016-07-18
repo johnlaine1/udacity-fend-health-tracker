@@ -2,10 +2,11 @@ define([
         'jquery',
         'underscore',
         'backbone',
+        'common',
         'views/foodListItem.view',
         'text!templates/foodSearch.tpl.html',
         'text!templates/foodSearchTableHeader.tpl.html'
-], function($, _, Backbone, FoodListItemView, foodSearchTemplate, foodSearchTableHeaderTemplate) {
+], function($, _, Backbone, common, FoodListItemView, foodSearchTemplate, foodSearchTableHeaderTemplate) {
     'use strict';
     
     var FoodSearchView = Backbone.View.extend({
@@ -51,10 +52,10 @@ define([
                     url: this.collection.url + '/' + searchPhrase,
                     reset: true,
                     data: {
-                        appId: '92d448d9',
-                        appKey: '846724b5b7bfc300557cf5140f806791',
-                        results: '0:5',
-                        fields: '*'
+                        appId: common.appId,
+                        appKey: common.appKey,
+                        results: common.numSearchResults,
+                        fields: common.searchFields
                     }
                 }
                 
