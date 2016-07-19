@@ -16,12 +16,16 @@ require.config({
 				'jquery'
 			],
 			exports: 'Backbone'
+		},
+		bootstrap: {
+			deps: ['jquery']
 		}
 	},
 	paths: {
 		jquery: '../lib/jquery/dist/jquery',
 		underscore: '../lib/underscore/underscore',
 		backbone: '../lib/backbone/backbone',
+		bootstrap: '../lib/bootstrap/dist/js/bootstrap',
 		text: '../lib/text/text',
 		firebase: '../lib/firebase/firebase',
 		backbonefire: 'backbonefire'

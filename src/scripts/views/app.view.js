@@ -3,7 +3,8 @@ define([
         'underscore',
         'backbone',
         'views/home.view',
-        'text!templates/app.tpl.html'
+        'text!templates/app.tpl.html',
+        'bootstrap'
 ], function($, _, Backbone, HomeView, appTemplate) {
     'use strict';
     
