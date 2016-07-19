@@ -3,8 +3,9 @@ define([
         'underscore',
         'backbone',
         'views/logListItem.view',
-        'text!templates/log.tpl.html'
-], function($, _, Backbone, LogListItemView, logTemplate) {
+        'text!templates/log.tpl.html',
+        'text!templates/logTableHeader.tpl.html'
+], function($, _, Backbone, LogListItemView, logTemplate, logTableHeaderTemplate) {
     'use strict';
     
     var LogView = Backbone.View.extend({
@@ -13,9 +14,15 @@ define([
         
         id: 'log',
        
-        events: {},
+        events: {
+            'click li.today': 'renderTodayLog',
+            'click li.seven-day': 'renderSevenDayLog',
+            'click li.thirty-day': 'renderThirtyDayLog'
+        },
        
         template: _.template(logTemplate),
+        
+        tableHeaderTemplate: logTableHeaderTemplate,
        
         initialize: function() {
            // Set up the event listeners
@@ -34,6 +41,7 @@ define([
        
         render: function() {
             this.$el.html(this.template);
+            this.$('#log-list').append(logTableHeaderTemplate);
             return this;
         },
         
@@ -45,9 +53,34 @@ define([
         // This will get called on a collection 'reset' event, like when the
         // collection is first populated from the database.
         addAll: function() {
-          this.$el.html('');
-          this.collection.each(this.addOne, this);
+            this.$('#log-list').empty();
+            this.$('#log-list').append(logTableHeaderTemplate);
+            this.collection.each(this.addOne, this);
        },
+       
+       renderTodayLog: function(e) {
+            var item_date;
+            var today = new Date().toDateString();     
+            
+            this.$('#log-list').empty();
+            this.$('#log-list').append(logTableHeaderTemplate);
+            
+           var filtered = this.collection.filter(function(model) {
+               item_date = new Date(model.get('log_item_date')).toDateString();
+              return (today === item_date);
+           });
+           
+           console.log(filtered);
+           filtered.each(this.addOne, this);
+       },
+       
+       renderSevenDayLog: function(e) {
+           console.log('7day');
+       },
+       
+       renderThirtyDayLog: function(e) {
+           console.log('30day');
+       }
     });
     
     return LogView;    
