@@ -27,7 +27,7 @@ define([
         initialize: function() {
            // Set up the event listeners
            this.listenTo(this.collection, 'add', this.addOne);
-           this.listenTo(this.collection, 'reset', this.addAll);
+           this.listenTo(this.collection, 'reset remove', this.addAll);
            this.listenTo(this.collection, 'logFilter', this.filterLog);
            this.listenTo(this.collection, 'logDateFilter', this.logDateFilter);
            
