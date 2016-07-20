@@ -20,6 +20,9 @@ define([], function() {
         
         // These are the fields that should be returned in the results from the
         // Nutritionix API. A '*' returns all fields.
-        searchFields: '*'
+        searchFields: '*',
+        
+        // Used to filter the results in the log view
+        logFilter: ''
     }; 
 });

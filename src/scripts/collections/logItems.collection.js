@@ -16,6 +16,8 @@ define([
        initialize: function() {},
        
        today: function() {
+        //   return this.where({log_item_date: '2016-07-05'});
+           
            var item_date;
            var today = new Date().toDateString();
             
@@ -23,9 +25,7 @@ define([
                item_date = new Date(model.get('log_item_date')).toDateString();
               return (today === item_date);
            });
-           
-           console.log(filtered);
-           return new LogItemsCollection(filtered);
+           return filtered;
            
        },
        

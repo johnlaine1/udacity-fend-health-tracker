@@ -2,34 +2,25 @@ define([
         'jquery',
         'underscore',
         'backbone',
-        'views/app.view',
-        'views/home.view'
-], function($, _, Backbone, AppView, HomeView) {
+        'collections/logItems.collection',
+        'common'
+], function($, _, Backbone, logItemsCollection, common) {
     'use strict';
     
     var AppRouter = Backbone.Router.extend({
-        
-        // homeView: null,
-        
-        initialize: function() {
-            // This is the base html skeleton for the app.
-            new AppView().render();
-        },
-        
+
         // Define the routes for this router.
         routes: {
-            '': 'log',
-            'search': 'search'
+            '*logFilter': 'setLogFilter'
         },
         
-        log: function() {
-            this.homeView = new HomeView();
-            $('#main-content').html(this.homeView.render().el);
-        },
-        
-        search: function() {
-            console.log('test function');
-            $('#main-content').html('The test page');
+        setLogFilter: function(param) {
+            // Set the filter to be used on the log view
+            common.logFilter = param || '';
+            
+            // This will trigger a 'logFilter' event, so we can filter the
+            // log view
+            logItemsCollection.trigger('logFilter');
         }
     });
     
