@@ -16,9 +16,7 @@ define([
         id: 'log',
        
         events: {
-            'click li.today': 'renderTodayLog',
-            'click li.seven-day': 'renderSevenDayLog',
-            'click li.thirty-day': 'renderThirtyDayLog'
+            'change #choose-log-date': 'dateSelect'
         },
        
         template: _.template(logTemplate),
@@ -30,6 +28,7 @@ define([
            this.listenTo(this.collection, 'add', this.addOne);
            this.listenTo(this.collection, 'reset', this.addAll);
            this.listenTo(this.collection, 'logFilter', this.filterLog);
+           this.listenTo(this.collection, 'logDateFilter', this.logDateFilter);
            
            // Fetch the collection associated with this view, it was passed
            // in when the view was instantiated. Setting 'reset' to true will
@@ -47,7 +46,30 @@ define([
             return this;
         },
         
-        filterLog: function(data) {
+        logDateFilter: function() {
+            console.log('logDateFilter triggered: ' + common.logDateFilter);  
+        },
+        
+        dateSelect: function(e) {
+            var date = this.$('#choose-log-date').val();
+            var logItems = this.collection.byDate(date);
+            common.logDateFilter = date;
+            this.collection.trigger('logDateFilter');
+            console.log(date);
+            console.log(common.logDateFilter);
+            
+            console.log(logItems);
+            this.$('#log-list').empty();
+            this.$('#log-list').append(logTableHeaderTemplate);            
+            _.each(logItems, this.addOne, this);
+        },
+        
+        filterLog: function() {
+            if (common.logFilter === 'today') {
+                this.$('#log-list').empty();
+                this.$('#log-list').append(logTableHeaderTemplate);
+                _.each(this.collection.today(), this.addOne, this);
+            }
             console.log('The log filter is: ' + common.logFilter);
         },
         
@@ -62,21 +84,6 @@ define([
             this.$('#log-list').empty();
             this.$('#log-list').append(logTableHeaderTemplate);
             this.collection.each(this.addOne, this);
-       },
-       
-       renderTodayLog: function(e) {
-            this.$('#log-list').empty();
-            this.$('#log-list').append(logTableHeaderTemplate);
-            
-            _.each(this.collection.today(), this.addOne, this);
-       },
-       
-       renderSevenDayLog: function(e) {
-           console.log('7day');
-       },
-       
-       renderThirtyDayLog: function(e) {
-           console.log('30day');
        }
     });
     

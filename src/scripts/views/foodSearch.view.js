@@ -38,7 +38,6 @@ define([
 
         getFoodItems: function() {
             var searchPhrase = this.$searchInput.val();
-            
             // If the input box is empty, clear the results.
             if (!searchPhrase) {
                 this.collection.reset();

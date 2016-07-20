@@ -13,10 +13,11 @@ define([
        
        url: 'https://health-tracker-64b3a.firebaseio.com/logs',
        
-       initialize: function() {},
+       byDate: function(date) {
+           return this.where({log_item_date: date});
+       },
        
        today: function() {
-        //   return this.where({log_item_date: '2016-07-05'});
            
            var item_date;
            var today = new Date().toDateString();
@@ -25,6 +26,7 @@ define([
                item_date = new Date(model.get('log_item_date')).toDateString();
               return (today === item_date);
            });
+           
            return filtered;
            
        },

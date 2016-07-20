@@ -23,6 +23,8 @@ define([], function() {
         searchFields: '*',
         
         // Used to filter the results in the log view
-        logFilter: ''
+        logFilter: '',
+        
+        logDateFilter: ''
     }; 
 });

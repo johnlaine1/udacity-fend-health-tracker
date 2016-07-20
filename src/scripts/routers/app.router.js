@@ -17,7 +17,6 @@ define([
         setLogFilter: function(param) {
             // Set the filter to be used on the log view
             common.logFilter = param || '';
-            
             // This will trigger a 'logFilter' event, so we can filter the
             // log view
             logItemsCollection.trigger('logFilter');
