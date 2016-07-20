@@ -16,7 +16,8 @@ define([
         id: 'log',
        
         events: {
-            'change #choose-log-date': 'dateSelect'
+            'change #choose-log-date': 'dateSelect',
+            'click #date-clear': 'dateClear'
         },
        
         template: _.template(logTemplate),
@@ -50,7 +51,7 @@ define([
             console.log('logDateFilter triggered: ' + common.logDateFilter);  
         },
         
-        dateSelect: function(e) {
+        dateSelect: function() {
             var date = this.$('#choose-log-date').val();
             var logItems = this.collection.byDate(date);
             common.logDateFilter = date;
@@ -62,6 +63,11 @@ define([
             this.$('#log-list').empty();
             this.$('#log-list').append(logTableHeaderTemplate);            
             _.each(logItems, this.addOne, this);
+        },
+        
+        dateClear: function() {
+            this.$('#choose-log-date').val('');
+            this.dateSelect();
         },
         
         filterLog: function() {

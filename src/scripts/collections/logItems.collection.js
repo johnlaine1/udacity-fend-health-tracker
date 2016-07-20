@@ -14,7 +14,13 @@ define([
        url: 'https://health-tracker-64b3a.firebaseio.com/logs',
        
        byDate: function(date) {
-           return this.where({log_item_date: date});
+            // If a date is passed in, match and return
+            if (date) {
+                return this.where({log_item_date: date});
+                // If no date is passed in, send them all
+            } else {
+                return this.models;
+            }
        },
        
        today: function() {
