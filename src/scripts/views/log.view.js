@@ -3,8 +3,10 @@ define([
         'underscore',
         'backbone',
         'views/logListItem.view',
-        'text!templates/log.tpl.html'
-], function($, _, Backbone, LogListItemView, logTemplate) {
+        'common',
+        'text!templates/log.tpl.html',
+        'text!templates/logTableHeader.tpl.html'
+], function($, _, Backbone, LogListItemView, common, logTemplate, logTableHeaderTemplate) {
     'use strict';
     
     var LogView = Backbone.View.extend({
@@ -13,14 +15,20 @@ define([
         
         id: 'log',
        
-        events: {},
+        events: {
+            'change #choose-log-date': 'dateSelect'
+        },
        
         template: _.template(logTemplate),
+        
+        tableHeaderTemplate: logTableHeaderTemplate,
        
         initialize: function() {
            // Set up the event listeners
            this.listenTo(this.collection, 'add', this.addOne);
            this.listenTo(this.collection, 'reset', this.addAll);
+           this.listenTo(this.collection, 'logFilter', this.filterLog);
+           this.listenTo(this.collection, 'logDateFilter', this.logDateFilter);
            
            // Fetch the collection associated with this view, it was passed
            // in when the view was instantiated. Setting 'reset' to true will
@@ -34,7 +42,35 @@ define([
        
         render: function() {
             this.$el.html(this.template);
+            this.$('#log-list').append(logTableHeaderTemplate);
             return this;
+        },
+        
+        logDateFilter: function() {
+            console.log('logDateFilter triggered: ' + common.logDateFilter);  
+        },
+        
+        dateSelect: function(e) {
+            var date = this.$('#choose-log-date').val();
+            var logItems = this.collection.byDate(date);
+            common.logDateFilter = date;
+            this.collection.trigger('logDateFilter');
+            console.log(date);
+            console.log(common.logDateFilter);
+            
+            console.log(logItems);
+            this.$('#log-list').empty();
+            this.$('#log-list').append(logTableHeaderTemplate);            
+            _.each(logItems, this.addOne, this);
+        },
+        
+        filterLog: function() {
+            if (common.logFilter === 'today') {
+                this.$('#log-list').empty();
+                this.$('#log-list').append(logTableHeaderTemplate);
+                _.each(this.collection.today(), this.addOne, this);
+            }
+            console.log('The log filter is: ' + common.logFilter);
         },
         
         addOne: function(model) {
@@ -45,9 +81,10 @@ define([
         // This will get called on a collection 'reset' event, like when the
         // collection is first populated from the database.
         addAll: function() {
-          this.$el.html('');
-          this.collection.each(this.addOne, this);
-       },
+            this.$('#log-list').empty();
+            this.$('#log-list').append(logTableHeaderTemplate);
+            this.collection.each(this.addOne, this);
+       }
     });
     
     return LogView;    

@@ -34,10 +34,15 @@ require.config({
 
 require([
 	'backbone',
+	'views/app.view',
 	'routers/app.router'
-], function (Backbone, AppRouter) {
-
+], function (Backbone, AppView, AppRouter) {
+	
 	// Initialize routing and start Backbone.history()
 	new AppRouter();
 	Backbone.history.start();
+	
+	new AppView();
+	
+	
 });
