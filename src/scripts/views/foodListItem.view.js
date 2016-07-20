@@ -3,8 +3,9 @@ define([
         'underscore',
         'backbone',
         'collections/logItems.collection',
-        'text!templates/foodListItem.tpl.html'
-], function($, _, Backbone, logItemsCollection, foodListItemTemplate) {
+        'text!templates/foodListItem.tpl.html',
+        'text!templates/foodItemDetail.tpl.html'
+], function($, _, Backbone, logItemsCollection, foodListItemTemplate, foodItemDetailTemplate) {
     'use strict';
     
     var FoodListItemView = Backbone.View.extend({
@@ -22,8 +23,12 @@ define([
 
         template: _.template(foodListItemTemplate),
         
+        foodItemDetailTemplate: _.template(foodItemDetailTemplate),
+        
         render: function() {
-            this.$el.html(this.template(this.model.toJSON()));            
+            this.$el.html(this.template(this.model.toJSON()));
+            this.$('.food-detail-content')
+                .append(this.foodItemDetailTemplate(this.model.toJSON()));
             return this;
         },
         
