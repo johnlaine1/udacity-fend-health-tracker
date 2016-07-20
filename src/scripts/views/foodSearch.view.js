@@ -44,7 +44,7 @@ define([
                 this.collection.reset();
                 
                 // This is needed to clear out the table headers when there are
-                // no results to view.
+                // no results to view
                 this.$searchList.empty();
             } else {
             
