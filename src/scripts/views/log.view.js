@@ -43,6 +43,8 @@ define([
        
         render: function() {
             this.$el.html(this.template);
+            this.$progressBar = this.$('.progress-indicator');
+            this.$progressBar.show();
             this.$('#log-list').append(logTableHeaderTemplate);
             return this;
         },
@@ -54,6 +56,7 @@ define([
         dateSelect: function() {
             var date = this.$('#choose-log-date').val();
             var logItems = this.collection.byDate(date);
+            
             common.logDateFilter = date;
             this.collection.trigger('logDateFilter');
             console.log(date);
@@ -80,6 +83,7 @@ define([
         },
         
         addOne: function(model) {
+            this.$progressBar.hide();
            var view = new LogListItemView({model: model});
            this.$('#log-list').append(view.render().el);
        },
