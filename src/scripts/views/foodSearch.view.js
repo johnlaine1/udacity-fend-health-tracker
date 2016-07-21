@@ -31,15 +31,19 @@ define([
             // Cache variables for later use.
             this.$searchInput = this.$('#food-search-input');
             this.$searchList = this.$('#food-search-result');
+            this.$progressBar = this.$('.progress-indicator');
             
             // Set up the event listeners
             this.listenTo(this.collection, 'reset', this.renderSearchList);
         },
 
         getFoodItems: function() {
+            this.$progressBar.show();
             var searchPhrase = this.$searchInput.val();
+            
             // If the input box is empty, clear the results.
             if (!searchPhrase) {
+                this.$progressBar.hide();
                 this.collection.reset();
                 
                 // This is needed to clear out the table headers when there are
@@ -65,7 +69,8 @@ define([
         renderSearchList: function() {
             var foodItem;
             
-            // Clear out the existing items.
+            // Clear out the existing items and hide progress bar.
+            this.$progressBar.hide();
             this.$searchList.empty();
             this.$searchList.append(this.tableHeaderTemplate);
             this.collection.each(function(model) {

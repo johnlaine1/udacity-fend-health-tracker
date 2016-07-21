@@ -40,6 +40,14 @@ button#add-food-item {
     margin-right: 25%;
 }
 
+#log .progress-indicator {
+    display: none;
+}
+
+#food-search .progress-indicator {
+    display: none;
+}
+
 
 
 
