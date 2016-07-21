@@ -8,12 +8,13 @@ define([
     'use strict';
     
     var LogItemsCollection = Backbone.Firebase.Collection.extend({
-       // A reference to this collections model.
-       model: LogItem,
+        
+        // A reference to this collections model.
+        model: LogItem,
        
-       url: 'https://health-tracker-64b3a.firebaseio.com/logs',
+        url: 'https://health-tracker-64b3a.firebaseio.com/logs',
        
-       byDate: function(date) {
+        byDate: function(date) {
             // If a date is passed in, match and return
             if (date) {
                 return this.where({log_item_date: date});
