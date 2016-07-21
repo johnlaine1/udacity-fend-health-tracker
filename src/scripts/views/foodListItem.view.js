@@ -29,6 +29,11 @@ define([
             this.$el.html(this.template(this.model.toJSON()));
             this.$('.food-detail-content')
                 .append(this.foodItemDetailTemplate(this.model.toJSON()));
+                
+            // Cache some selectors for later use
+            this.$date = this.$('#log-item-date');
+            this.$meal = this.$('#log-item-meal');
+            this.$qty  = this.$('#log-item-qty');
             return this;
         },
         
@@ -39,15 +44,15 @@ define([
         addItemToLog: function(event) {
             event.preventDefault();
             
-            var date = this.$('#log-item-date').val();
-            var meal = this.$('#log-item-meal').val();
-            var qty  = this.$('#log-item-qty').val();
-            
-            this.model.set('log_item_date', date);
-            this.model.set('log_item_meal', meal);
-            this.model.set('log_item_qty', qty);
+            this.model.set('log_item_date', this.$date.val());
+            this.model.set('log_item_meal', this.$meal.val());
+            this.model.set('log_item_qty', this.$qty.val());
 
             logItemsCollection.create(this.model.toJSON());
+            
+            this.$date.val('');
+            this.$meal.val('');
+            this.$qty.val('');
        }        
     });
     
