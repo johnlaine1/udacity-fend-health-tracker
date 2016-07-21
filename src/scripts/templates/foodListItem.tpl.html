@@ -22,7 +22,8 @@
                     <option value="snack">Snack</option>
                 </select>   
                 <label class="sr-only" for="log-item-qty">Servings</label>
-                <input type="number" class="form-control" id="log-item-qty" placeholder="Quantity" >
+                <input type="number" name="log-item-qty" class="form-control" 
+                       id="log-item-qty" placeholder="Quantity" min="1" >
             </div>
             <button id="add-food-item" type="submit" class="btn btn-primary">Add item to food log</button>
         </form> 
