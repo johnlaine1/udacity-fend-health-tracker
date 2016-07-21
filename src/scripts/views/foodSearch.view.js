@@ -25,6 +25,8 @@ define([
         },
         
         initialize: function() {
+            _.bindAll(this, 'searchFail');
+            
             // This template needs to be available right away.
             this.$el.html(this.template);
             
@@ -38,8 +40,9 @@ define([
         },
 
         getFoodItems: function() {
-            this.$progressBar.show();
             var searchPhrase = this.$searchInput.val();
+            
+            this.$progressBar.show();
             
             // If the input box is empty, clear the results.
             if (!searchPhrase) {
@@ -54,13 +57,14 @@ define([
                 var options = {
                     url: this.collection.url + '/' + searchPhrase,
                     reset: true,
+                    error: this.searchFail,
                     data: {
                         appId: common.appId,
                         appKey: common.appKey,
                         results: common.numSearchResults,
                         fields: common.searchFields
                     }
-                }
+                };
                 
                 this.collection.fetch(options);                
             }
@@ -77,6 +81,12 @@ define([
                 foodItem = new FoodListItemView({model: model});
                 this.$searchList.append(foodItem.render().el);
             }, this);  
+        },
+        
+        searchFail: function() {
+            this.$progressBar.hide();
+            this.$searchList.html('<h3 class="search-fail">Oops, it appears that an error has occured</h3>');
+            console.log('fail');
         }
     });
     
