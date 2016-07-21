@@ -34,6 +34,12 @@ button#add-food-item {
     cursor: pointer;
 }
 
+.progress-indicator {
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
 
 
 
