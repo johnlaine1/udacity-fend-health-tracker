@@ -21,28 +21,6 @@ define([
             } else {
                 return this.models;
             }
-       },
-       
-       today: function() {
-           
-           var item_date;
-           var today = new Date().toDateString();
-            
-           var filtered = this.filter(function(model) {
-               item_date = new Date(model.get('log_item_date')).toDateString();
-              return (today === item_date);
-           });
-           
-           return filtered;
-           
-       },
-       
-       lastSevenDays: function() {
-           
-       },
-       
-       lastThirtyDays: function() {
-           
        }
     });
     

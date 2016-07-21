@@ -3,16 +3,9 @@
         <h4>Food Log</h4>
     </div>
     <div class="panel-body">
-        <ul class="nav nav-pills">
-            <li role="presentation" class="today active"><a href="#">All</a></li>
-            <li role="presentation" class="seven-day"><a href="#today">Today</a></li>
-            <li role="presentation" class="thirty-day"><a href="#last-seven-days">Last 7 Days</a></li>
-            <li role="presentation" class="choose-day">
-                <label for="choose-log-date">Pick a Day to View </label>
-                <input type="date" class="choose-date" id="choose-log-date">
-                <button id="date-clear" class="btn btn-primary">Clear</button>
-            </li>
-        </ul>
+        <label for="choose-log-date">Pick a Date</label>
+        <input type="date" class="choose-date" id="choose-log-date">
+        <button id="date-clear" class="btn btn-primary">Clear</button>
         <table id="log-list" class="table table-hover"></table>
     </div>
 </div> 
