@@ -26,6 +26,7 @@ define([
         tableHeaderTemplate: logTableHeaderTemplate,
        
         initialize: function() {
+            _.bindAll(this, 'logLoadError');
             
             // Set up the event listeners
             this.collection.on('all', function(event) {console.log(event);});
@@ -37,10 +38,27 @@ define([
        
         render: function() {
             this.$el.html(this.template);
+            
+            // Cache some jQuery objects.
             this.$progressBar = this.$('.progress-indicator');
+            this.$logList = this.$('#log-list');
+            
             this.$progressBar.show();
-            this.$('#log-list').append(logTableHeaderTemplate);
+            this.$logList.append(logTableHeaderTemplate);
+            
+            // In case there is an error connecting to firebase, we will wait
+            // 5 seconds and then show a notice to the user. If there is a
+            // connection, the 'addOne' method will fire which will remove this
+            // timeout.
+            // After searching I was unable to find a solution by directly
+            // using the firebase API.
+            this.fbError = setTimeout(this.logLoadError, 5000);
             return this;
+        },
+        
+        logLoadError: function() {
+            this.$progressBar.hide();
+            this.$logList.html('<h2>Oops, there seems to have been an error</h2>');            
         },
         
         logDateFilter: function() {
@@ -57,8 +75,8 @@ define([
             console.log(common.logDateFilter);
             
             console.log(logItems);
-            this.$('#log-list').empty();
-            this.$('#log-list').append(logTableHeaderTemplate);            
+            this.$logList.empty();
+            this.$logList.append(logTableHeaderTemplate);            
             _.each(logItems, this.addOne, this);
         },
         
@@ -69,24 +87,25 @@ define([
         
         filterLog: function() {
             if (common.logFilter === 'today') {
-                this.$('#log-list').empty();
-                this.$('#log-list').append(logTableHeaderTemplate);
+                this.$logList.empty();
+                this.$logList.append(logTableHeaderTemplate);
                 _.each(this.collection.today(), this.addOne, this);
             }
             console.log('The log filter is: ' + common.logFilter);
         },
         
         addOne: function(model) {
+            clearTimeout(this.fbError);
             this.$progressBar.hide();
             var view = new LogListItemView({model: model});
-            this.$('#log-list').append(view.render().el);
+            this.$logList.append(view.render().el);
        },
        
         // This will get called on a collection 'reset' event, like when the
         // collection is first populated from the database.
         addAll: function() {
-            this.$('#log-list').empty();
-            this.$('#log-list').append(logTableHeaderTemplate);
+            this.$logList.empty();
+            this.$logList.append(logTableHeaderTemplate);
             this.collection.each(this.addOne, this);
        },
        
