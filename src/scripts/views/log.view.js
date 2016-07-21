@@ -78,8 +78,8 @@ define([
         
         addOne: function(model) {
             this.$progressBar.hide();
-           var view = new LogListItemView({model: model});
-           this.$('#log-list').append(view.render().el);
+            var view = new LogListItemView({model: model});
+            this.$('#log-list').append(view.render().el);
        },
        
         // This will get called on a collection 'reset' event, like when the
