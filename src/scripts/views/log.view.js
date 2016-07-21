@@ -5,7 +5,8 @@ define([
         'views/logListItem.view',
         'common',
         'text!templates/log.tpl.html',
-        'text!templates/logTableHeader.tpl.html'
+        'text!templates/logTableHeader.tpl.html',
+        'backbonefire'
 ], function($, _, Backbone, LogListItemView, common, logTemplate, logTableHeaderTemplate) {
     'use strict';
     
@@ -25,20 +26,13 @@ define([
         tableHeaderTemplate: logTableHeaderTemplate,
        
         initialize: function() {
-           // Set up the event listeners
-           this.listenTo(this.collection, 'add', this.addOne);
-           this.listenTo(this.collection, 'reset remove', this.addAll);
-           this.listenTo(this.collection, 'logFilter', this.filterLog);
-           this.listenTo(this.collection, 'logDateFilter', this.logDateFilter);
-           
-           // Fetch the collection associated with this view, it was passed
-           // in when the view was instantiated. Setting 'reset' to true will
-           // trigger a 'reset' event, not an add event for each model added.
-           // this will cause the addAll function to run and therefore populate
-           // the view.
-           this.collection.fetch({reset: true});
-           
-           this.render();
+            
+            // Set up the event listeners
+            this.collection.on('all', function(event) {console.log(event);});
+            this.listenTo(this.collection, 'add', this.addOne);
+            this.listenTo(this.collection, 'remove', this.addAll);
+            this.listenTo(this.collection, 'logFilter', this.filterLog);
+            this.listenTo(this.collection, 'logDateFilter', this.logDateFilter);
         },
        
         render: function() {
@@ -94,7 +88,8 @@ define([
             this.$('#log-list').empty();
             this.$('#log-list').append(logTableHeaderTemplate);
             this.collection.each(this.addOne, this);
-       }
+       },
+       
     });
     
     return LogView;    

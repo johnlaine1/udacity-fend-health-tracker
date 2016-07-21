@@ -25,7 +25,7 @@ define([
         render: function() {
             this.$el.html(this.template);
             this.$('.food-search').html(this.foodSearchView.$el);
-            this.$('.log').html(this.logView.$el);
+            this.$('.log').html(this.logView.render().$el);
 
             return this;
         }

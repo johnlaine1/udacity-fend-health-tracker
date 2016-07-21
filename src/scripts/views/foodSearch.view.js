@@ -84,9 +84,9 @@ define([
         },
         
         searchFail: function() {
+            console.log('searchFail');
             this.$progressBar.hide();
             this.$searchList.html('<h3 class="search-fail">Oops, it appears that an error has occured</h3>');
-            console.log('fail');
         }
     });
     
