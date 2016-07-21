@@ -25,5 +25,9 @@ button #add-food-item {
     display: none;
 }
 
+.food-item {
+    cursor: pointer;
+}
+
 
 
