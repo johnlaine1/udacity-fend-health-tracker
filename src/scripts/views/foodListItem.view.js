@@ -53,6 +53,11 @@ define([
             this.$date.val('');
             this.$meal.val('');
             this.$qty.val('');
+            
+            // In the case where the log is currently set to a different date
+            // than the date of the item being saved. This will prevent it 
+            // from showing up in the list.
+            logItemsCollection.trigger('logDateFilter');
        }        
     });
     

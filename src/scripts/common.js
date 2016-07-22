@@ -22,9 +22,7 @@ define([], function() {
         // Nutritionix API. A '*' returns all fields.
         searchFields: '*',
         
-        // Used to filter the results in the log view
-        logFilter: '',
-        
+        // Used to filter the results in the log view by date
         logDateFilter: ''
     }; 
 });
