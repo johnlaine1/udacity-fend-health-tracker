@@ -26,6 +26,12 @@ button#add-food-item {
     background-color: #c7e4f6;
 }
 
+.food-detail-content {
+}
+
+.food-detail-container {
+    display: flex;
+}
 .food-detail:not(.btn):hover {
     background-color: #c7e4f6;
 }
@@ -52,6 +58,9 @@ button#add-food-item {
     text-align: center;
 }
 
+.item-prop-title {
+    font-weight: bold;
+}
 
 
 
