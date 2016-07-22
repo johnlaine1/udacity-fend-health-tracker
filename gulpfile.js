@@ -3,6 +3,7 @@
 // Load our dependencies.
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
+var requirejsOptimize = require('gulp-requirejs-optimize');
 var htmlMin = require('gulp-htmlmin');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
@@ -17,7 +18,13 @@ var del = require('del');
 var reload = browserSync.reload;
 var port = 8080;
 
-
+gulp.task('scripts', function () {
+    return gulp.src('src/scripts/main.js')
+        .pipe(requirejsOptimize({
+          mainConfigFile: 'src/scripts/main.js'
+        }))
+        .pipe(gulp.dest('dist'));
+});
 /**
  * This task will Concat & Minify all CSS and JS references in your index.html
  * file into two files, one for CSS and one for JS. 
