@@ -29,7 +29,6 @@ define([
             _.bindAll(this, 'logLoadError');
             
             // Set up the event listeners
-            this.collection.on('all', function(event) {console.log(event);});
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'remove', this.addAll);
             this.listenTo(this.collection, 'logDateFilter', this.addAll);
@@ -83,23 +82,17 @@ define([
                 var view = new LogListItemView({model: model});
                 this.$logList.append(view.render().el);                
             }
-            
-            console.log(model.attributes.log_item_date);
-
-       },
+        },
        
         addAll: function() {
             this.$logList.empty();
             this.$logList.append(logTableHeaderTemplate);
             
             var date = common.logDateFilter;
-            console.log('from addAll: ' + date);
             var logItems = this.collection.byDate(date);  
             
             _.each(logItems, this.addOne, this);
-            // logItems.each(this.addOne, this);
-       },
-       
+        }
     });
     
     return LogView;    

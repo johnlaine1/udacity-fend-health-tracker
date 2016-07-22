@@ -9,34 +9,32 @@ define([
     
     var LogListItemView = Backbone.View.extend({
        
-       tagName: 'tbody',
+        tagName: 'tbody',
        
-       template: _.template(logListItemTemplate),
+        template: _.template(logListItemTemplate),
        
-       foodItemDetailTemplate: _.template(foodItemDetailTemplate),
+        foodItemDetailTemplate: _.template(foodItemDetailTemplate),
        
-       events: {
+        events: {
             'click tr.food-item': 'showItemDetail',
             'click #delete-log-item': 'deleteLogItem'
-       },
+        },
        
-       initialize: function() {},
+        render: function() {
+            this.$el.html(this.template(this.model.toJSON()));
+            this.$('.food-detail-content').append(this.foodItemDetailTemplate(this.model.toJSON()));
+            return this;
+        },
        
-       render: function() {
-           this.$el.html(this.template(this.model.toJSON()));
-           this.$('.food-detail-content').append(this.foodItemDetailTemplate(this.model.toJSON()));
-           return this;
-       },
-       
-       showItemDetail: function() {
+        showItemDetail: function() {
             this.$('tr.food-detail').toggle();           
-       },
+        },
        
-       deleteLogItem: function() {
-           console.log('deleteLogItem');
-           console.log(this.model);
-           this.model.destroy();
-       }
+        deleteLogItem: function() {
+            console.log('deleteLogItem');
+            console.log(this.model);
+            this.model.destroy();
+        }
     });
     
     return LogListItemView;    

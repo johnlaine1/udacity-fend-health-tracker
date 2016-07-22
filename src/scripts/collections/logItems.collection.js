@@ -18,6 +18,7 @@ define([
             // If a date is passed in, match and return
             if (date) {
                 return this.where({log_item_date: date});
+                
                 // If no date is passed in, send them all
             } else {
                 return this.models;

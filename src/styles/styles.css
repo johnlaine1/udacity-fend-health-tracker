@@ -1,6 +1,7 @@
 #title {
     text-align: center;
 }
+
 #search-list {
     max-height: 70vh;
 }
@@ -17,7 +18,7 @@
     text-align: center;
 }
 
-button#add-food-item {
+#add-food-item {
     margin-top: 15px;
 }
 
@@ -26,12 +27,10 @@ button#add-food-item {
     background-color: #c7e4f6;
 }
 
-.food-detail-content {
-}
-
 .food-detail-container {
     display: flex;
 }
+
 .food-detail:not(.btn):hover {
     background-color: #c7e4f6;
 }

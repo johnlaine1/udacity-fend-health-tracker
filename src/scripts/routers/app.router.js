@@ -17,9 +17,9 @@ define([
         setLogDateFilter: function(param) {
             // Set the filter to be used on the log view
             common.logDateFilter = param || '';
+            
             // This will trigger a 'logFilter' event, so we can filter the
             // log view
-            console.log('from the appRoute: ' + param);
             logItemsCollection.trigger('logDateFilter');
         }
     });

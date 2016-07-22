@@ -21,7 +21,6 @@ define([
         
         events: {
             'keyup #food-search-input': 'getFoodItems'
-            
         },
         
         initialize: function() {
