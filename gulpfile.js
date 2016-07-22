@@ -3,6 +3,7 @@
 // Load our dependencies.
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
+var requirejsOptimize = require('gulp-requirejs-optimize');
 var htmlMin = require('gulp-htmlmin');
 var useref = require('gulp-useref');
 var uglify = require('gulp-uglify');
@@ -17,7 +18,13 @@ var del = require('del');
 var reload = browserSync.reload;
 var port = 8080;
 
-
+gulp.task('scripts', function () {
+    return gulp.src('src/scripts/main.js')
+        .pipe(requirejsOptimize({
+          mainConfigFile: 'src/scripts/main.js'
+        }))
+        .pipe(gulp.dest('dist/scripts'));
+});
 /**
  * This task will Concat & Minify all CSS and JS references in your index.html
  * file into two files, one for CSS and one for JS. 
@@ -41,13 +48,15 @@ var port = 8080;
  * 
  */
 // Concat & Minify CSS into one file, save to dist and update index.html
-// Concat & Minify JS into one file, save to dist and update index.html
-gulp.task('js-css-min', function() {
+gulp.task('js-min', function() {
+  return gulp.src('src/lib/requirejs/require.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/lib/requirejs'));
+});
+
+gulp.task('css-min', function() {
   return gulp.src('src/index.html')
     .pipe(useref({}, lazypipe().pipe(sourcemaps.init, { loadMaps: true })))
-    
-    // Minifies only if it's a JavaScript file.
-    .pipe(gulpIf('*.js', uglify()))
     
     // Minifies only if it's a CSS file.
     .pipe(gulpIf('*.css', cssNano()))
@@ -72,13 +81,16 @@ gulp.task('images', function() {
 
 // Set files to watch for updates
 gulp.task('watch', function() {
-  gulp.watch(['src/**/*.js'], ['build', reload]);
-  gulp.watch(['src/**/*.css'], ['build', reload]);
-  gulp.watch(['src/**/*.html'], ['build', reload]); 
+  gulp.watch([
+    'src/**/*.js', 
+    'src/**/*.css', 
+    'src/**/*.html'], 
+    ['build', reload]
+  ); 
 });
 
 // Start the server with src files.
-gulp.task('serve:src', ['watch'], function() {
+gulp.task('serve:src', function() {
   browserSync({
     port: port,
     server: {
@@ -99,7 +111,7 @@ gulp.task('serve:dist', ['build', 'watch'], function() {
 
 // Build the dist file for deployment to production.
 gulp.task('build', ['clean'], function() {
-  runSequence('js-css-min', 'index-min');
+  runSequence('css-min', 'js-min', 'scripts', 'index-min');
 });
 
 // Clean the dist directory.
