@@ -11,15 +11,16 @@ define([
 
         // Define the routes for this router.
         routes: {
-            '*logFilter': 'setLogFilter'
+            '*logDateFilter': 'setLogDateFilter'
         },
         
-        setLogFilter: function(param) {
+        setLogDateFilter: function(param) {
             // Set the filter to be used on the log view
-            common.logFilter = param || '';
+            common.logDateFilter = param || '';
             // This will trigger a 'logFilter' event, so we can filter the
             // log view
-            logItemsCollection.trigger('logFilter');
+            console.log('from the appRoute: ' + param);
+            logItemsCollection.trigger('logDateFilter');
         }
     });
     

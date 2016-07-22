@@ -32,8 +32,7 @@ define([
             this.collection.on('all', function(event) {console.log(event);});
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'remove', this.addAll);
-            this.listenTo(this.collection, 'logFilter', this.filterLog);
-            this.listenTo(this.collection, 'logDateFilter', this.logDateFilter);
+            this.listenTo(this.collection, 'logDateFilter', this.addAll);
         },
        
         render: function() {
@@ -42,6 +41,7 @@ define([
             // Cache some jQuery objects.
             this.$progressBar = this.$('.progress-indicator');
             this.$logList = this.$('#log-list');
+            this.$dateInput = this.$('#choose-log-date');
             
             this.$progressBar.show();
             this.$logList.append(logTableHeaderTemplate);
@@ -61,23 +61,30 @@ define([
             this.$logList.html('<h2>Oops, there seems to have been an error</h2>');            
         },
         
-        logDateFilter: function() {
-            console.log('logDateFilter triggered: ' + common.logDateFilter);  
-        },
+        // logDateFilter: function() {
+        //     console.log('logDateFilter triggered: ' + common.logDateFilter);
+        //     var date = common.logDateFilter;
+        //     var logItems = this.collection.byDate(date);
+        //     this.$logList.empty();
+        //     this.$logList.append(logTableHeaderTemplate);            
+        //     _.each(logItems, this.addOne, this);            
+        // },
         
         dateSelect: function() {
             var date = this.$('#choose-log-date').val();
-            var logItems = this.collection.byDate(date);
+            // var logItems = this.collection.byDate(date);
             
-            common.logDateFilter = date;
-            this.collection.trigger('logDateFilter');
-            console.log(date);
-            console.log(common.logDateFilter);
+            // common.logDateFilter = date;
+            // this.collection.trigger('logDateFilter');
+            // console.log(date);
+            // console.log(common.logDateFilter);
+            // console.log(logItems);
             
-            console.log(logItems);
-            this.$logList.empty();
-            this.$logList.append(logTableHeaderTemplate);            
-            _.each(logItems, this.addOne, this);
+            Backbone.history.navigate(date, true);
+            
+            // this.$logList.empty();
+            // this.$logList.append(logTableHeaderTemplate);            
+            // _.each(logItems, this.addOne, this);
         },
         
         dateClear: function() {
@@ -85,28 +92,35 @@ define([
             this.dateSelect();
         },
         
-        filterLog: function() {
-            if (common.logFilter === 'today') {
-                this.$logList.empty();
-                this.$logList.append(logTableHeaderTemplate);
-                _.each(this.collection.today(), this.addOne, this);
-            }
-            console.log('The log filter is: ' + common.logFilter);
-        },
-        
         addOne: function(model) {
             clearTimeout(this.fbError);
+            var item_date = model.attributes.log_item_date;
+            var filter_date = common.logDateFilter;
+            
             this.$progressBar.hide();
-            var view = new LogListItemView({model: model});
-            this.$logList.append(view.render().el);
+            
+            if (filter_date === '' || item_date === filter_date) {
+                var view = new LogListItemView({model: model});
+                this.$logList.append(view.render().el);                
+            }
+            
+            console.log(model.attributes.log_item_date);
+
        },
        
         // This will get called on a collection 'reset' event, like when the
         // collection is first populated from the database.
         addAll: function() {
+            
             this.$logList.empty();
             this.$logList.append(logTableHeaderTemplate);
-            this.collection.each(this.addOne, this);
+            
+            var date = common.logDateFilter;
+            console.log('from addAll: ' + date);
+            var logItems = this.collection.byDate(date);  
+            
+            _.each(logItems, this.addOne, this);
+            // logItems.each(this.addOne, this);
        },
        
     });
