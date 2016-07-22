@@ -61,34 +61,14 @@ define([
             this.$logList.html('<h2>Oops, there seems to have been an error</h2>');            
         },
         
-        // logDateFilter: function() {
-        //     console.log('logDateFilter triggered: ' + common.logDateFilter);
-        //     var date = common.logDateFilter;
-        //     var logItems = this.collection.byDate(date);
-        //     this.$logList.empty();
-        //     this.$logList.append(logTableHeaderTemplate);            
-        //     _.each(logItems, this.addOne, this);            
-        // },
-        
         dateSelect: function() {
-            var date = this.$('#choose-log-date').val();
-            // var logItems = this.collection.byDate(date);
-            
-            // common.logDateFilter = date;
-            // this.collection.trigger('logDateFilter');
-            // console.log(date);
-            // console.log(common.logDateFilter);
-            // console.log(logItems);
+            var date = this.$dateInput.val();
             
             Backbone.history.navigate(date, true);
-            
-            // this.$logList.empty();
-            // this.$logList.append(logTableHeaderTemplate);            
-            // _.each(logItems, this.addOne, this);
         },
         
         dateClear: function() {
-            this.$('#choose-log-date').val('');
+            this.$dateInput.val('');
             this.dateSelect();
         },
         
@@ -108,10 +88,7 @@ define([
 
        },
        
-        // This will get called on a collection 'reset' event, like when the
-        // collection is first populated from the database.
         addAll: function() {
-            
             this.$logList.empty();
             this.$logList.append(logTableHeaderTemplate);
             
