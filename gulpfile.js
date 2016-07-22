@@ -26,22 +26,15 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('dist/scripts'));
 });
 /**
- * This task will Concat & Minify all CSS and JS references in your index.html
- * file into two files, one for CSS and one for JS. 
+ * This task will Concat & Minify all CSS references in your index.html
  * It will then copy your index.html file to the 'dist' directory, change the 
- * CSS and JS references to point to the newly created CSS and JS files.
+ * CSS references to point to the newly created CSS files.
  * 
  * In order for this to work, wrap your <link> tags for your CSS in your
  * index.html file like this:
  * 
  * <!-- build:css css/styles.min.css -->
  *      <your link tags go here>
- * <!-- endbuild -->
- * 
- * And wrap your <script> tags for your JS like this:
- * 
- * <!-- build:js js/main.min.js -->
- *      <your script tags go here> 
  * <!-- endbuild -->
  * 
  * Be sure only to wrap local files, not files coming in from a CDN.
