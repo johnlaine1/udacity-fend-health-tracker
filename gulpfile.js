@@ -19,12 +19,13 @@ var reload = browserSync.reload;
 var port = 8080;
 
 gulp.task('scripts', function () {
-    return gulp.src('src/scripts/main.js')
-        .pipe(requirejsOptimize({
-          mainConfigFile: 'src/scripts/main.js'
-        }))
-        .pipe(gulp.dest('dist/scripts'));
+  return gulp.src('src/scripts/main.js')
+    .pipe(requirejsOptimize({
+      mainConfigFile: 'src/scripts/main.js'
+    }))
+    .pipe(gulp.dest('dist/scripts'));
 });
+
 /**
  * This task will Concat & Minify all CSS references in your index.html
  * It will then copy your index.html file to the 'dist' directory, change the 
@@ -40,6 +41,7 @@ gulp.task('scripts', function () {
  * Be sure only to wrap local files, not files coming in from a CDN.
  * 
  */
+ 
 // Concat & Minify CSS into one file, save to dist and update index.html
 gulp.task('js-min', function() {
   return gulp.src('src/lib/requirejs/require.js')
