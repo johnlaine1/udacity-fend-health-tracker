@@ -115,7 +115,7 @@ gulp.task('clean', function() {
 });
 
 // Push build to gh-pages
-gulp.task('gh-pages', function() {
+gulp.task('gh-pages', ['build'], function() {
   return gulp.src('./dist/**/*')
     .pipe(deploy());
 });
