@@ -31,8 +31,6 @@ define([
         },
        
         deleteLogItem: function() {
-            console.log('deleteLogItem');
-            console.log(this.model);
             this.model.destroy();
         }
     });
