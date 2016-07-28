@@ -4,9 +4,9 @@ define([
         'backbone'
 ], function($, _, Backbone) {
     'use strict';
-    
+
     var LogItem = Backbone.Model.extend({
-        
+
         defaults: {
             log_item_date: '',
             log_item_meal: '',
@@ -18,9 +18,9 @@ define([
             nf_total_carbohydrate: '0',
             nf_dietary_fiber: '0',
             nf_protein: '0'
-            
+
         }
     });
-    
+
     return LogItem;
 });
