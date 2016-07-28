@@ -5,13 +5,13 @@ define([
         'models/foodItem.model'
 ], function($, _, Backbone, FoodItem) {
     'use strict';
-    
+
     var FoodItemsCollection = Backbone.Collection.extend({
-        
+
         model: FoodItem,
 
         url: 'https://api.nutritionix.com/v1_1/search',
-        
+
         // Manipulate the data so we get just what we want.
         parse: function(response) {
             var models = [];
@@ -21,9 +21,8 @@ define([
             return models;
         }
     });
-    
-    return new FoodItemsCollection;    
+
+    return new FoodItemsCollection;
 });
 
-        
-    
+

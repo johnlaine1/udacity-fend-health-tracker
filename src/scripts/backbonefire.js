@@ -354,7 +354,7 @@ define([
       }
 
     },
-    
+
     sync: function(method, model, options) {
       Backbone.Firebase.sync(method, model, options);
     },

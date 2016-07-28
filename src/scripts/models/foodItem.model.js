@@ -4,9 +4,9 @@ define([
         'backbone'
 ], function($, _, Backbone) {
     'use strict';
-    
+
     var FoodItem = Backbone.Model.extend({
-        
+
         defaults: {
             brand_name: 'na',
             item_name: 'na',
@@ -18,5 +18,5 @@ define([
         }
     });
 
-    return FoodItem;    
+    return FoodItem;
 });
