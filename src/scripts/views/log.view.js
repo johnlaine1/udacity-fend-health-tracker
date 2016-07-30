@@ -14,7 +14,7 @@ define([
 
         tagName: 'div',
 
-        id: 'log',
+        class: 'log-items',
 
         events: {
             'change #choose-log-date': 'dateSelect',

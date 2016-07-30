@@ -1,16 +1,8 @@
-#title {
+.app-title {
     text-align: center;
 }
 
-#search-list {
-    max-height: 70vh;
-}
-
-#search-list li {
-    list-style: none;
-}
-
-#food-search-input {
+.food-search-input {
     color: black;
 }
 
@@ -18,7 +10,7 @@
     text-align: center;
 }
 
-#add-food-item {
+.add-food-item {
     margin-top: 15px;
 }
 
@@ -45,11 +37,11 @@
     margin-right: 25%;
 }
 
-#log .progress-indicator {
+.log-items .progress-indicator {
     display: none;
 }
 
-#food-search .progress-indicator {
+.food-search .progress-indicator {
     display: none;
 }
 

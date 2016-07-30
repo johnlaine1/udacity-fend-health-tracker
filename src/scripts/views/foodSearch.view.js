@@ -13,14 +13,14 @@ define([
 
         tagName: 'div',
 
-        id: 'food-search',
+        class: 'food-search-items',
 
         template: foodSearchTemplate,
 
         tableHeaderTemplate: foodSearchTableHeaderTemplate,
 
         events: {
-            'keyup #food-search-input': 'getFoodItems'
+            'keyup .food-search-input': 'getFoodItems'
         },
 
         initialize: function() {
@@ -30,8 +30,8 @@ define([
             this.$el.html(this.template);
 
             // Cache variables for later use.
-            this.$searchInput = this.$('#food-search-input');
-            this.$searchList = this.$('#food-search-result');
+            this.$searchInput = this.$('.food-search-input');
+            this.$searchList = this.$('.food-search-result');
             this.$progressBar = this.$('.progress-indicator');
 
             // Set up the event listeners
