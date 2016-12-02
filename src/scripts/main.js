@@ -30,7 +30,7 @@ require.config({
 		bootstrap: '../lib/bootstrap/dist/js/bootstrap',
 		text: '../lib/text/text',
 		firebase: '../lib/firebase/firebase',
-		backbonefire: 'backbonefire'
+		backbonefire: '../lib/backbonefire/dist/backbonefire'
 	}
 });
 

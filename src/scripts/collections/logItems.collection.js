@@ -12,7 +12,8 @@ define([
         // A reference to this collections model.
         model: LogItem,
 
-        url: 'https://health-tracker-64b3a.firebaseio.com/logs',
+
+        url: 'https://health-tracker-31fdb.firebaseio.com/logs',
 
         byDate: function(date) {
             // If a date is passed in, match and return
