@@ -1,7 +1,7 @@
 # Health Tracker
 
+### [Live Demo](https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fjohnlaine1%2Egithub%2Eio%2Fudacity-fend-health-tracker%2F&urlhash=8pXC&trk=prof-project-name-link)
 #### Created by: John Laine
-
 ## Description
 A project created and submitted to Udacity as part of the Front End Developer nanodegree program.
  
